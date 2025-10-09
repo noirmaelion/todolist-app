@@ -1,0 +1,1097 @@
+/* ======================= Body ======================= */
+
+* 
+{
+    -webkit-tap-highlight-color: transparent; /* Safari/Chrome iOS */
+    -webkit-touch-callout: none;              /* Prevents long-press menu on links/images */
+}
+    /* removes blue highlight on touch on mobile */
+    /* also might remove highlited links since applyed everywhere */
+
+body
+{
+    position: relative;
+    background-color: var(--background-color);
+    font-family: sans-serif;
+
+    transition: background-color 0.3s ease;
+}
+
+/* gradient overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--background-gradient, none);
+  z-index: -1;
+  opacity: var(--gradient-opacity);
+  pointer-events: none;
+
+  transition: opacity 0.3s ease;
+}
+
+/* ======================= Header ======================= */
+
+#header
+{
+    position: relative;
+    left: 50%;
+    translate: -50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--header-color);
+    color: var(--text-color-header);
+    font-size: 2em;
+    border-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    min-width: 500px;
+    box-shadow: 0px 0px 25px var(--shadow-color);
+    user-select: none;
+
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#header::before
+{
+    content: "";
+    position: absolute;
+    background: var(--header-gradient, none);
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: var(--gradient-opacity);
+
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.darkmode #header
+{
+    color: var(--text-color-second);
+}
+
+/* ======================= To Do List app + Button panel container ======================= */
+
+#container
+{
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    translate: -50%;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+/* ======================= To Do List app - input + list items ======================= */
+
+#ToDoList
+{
+    box-sizing: border-box;
+    position: relative;
+    background-color: var(--primary-color);
+    
+    width: 500px;
+    min-height: 50px;
+    border-radius: 50px;
+    padding: 50px 30px 30px;
+    box-shadow: 0px 0px 15px var(--shadow-color);
+
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#ToDoList::before
+{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--primary-gradient);
+    border-radius: inherit;
+
+    opacity: var(--gradient-opacity);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* ======================= Input container - input + button ======================= */
+
+#input
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--input-color);
+    border-radius: 50px;
+    margin-bottom: 30px;
+    position: relative;
+    /* relative renders on top of gradient */
+
+    transition: background-color 0.3s ease;
+    
+}
+
+#input input
+{
+    width: 400px;
+    height: 50px;
+    flex-grow: 1;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 0px 20px;
+    font-size: 1.2em;
+}
+
+#input input::placeholder
+{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    color: var(--input-placeholder-color);
+
+    transition: color 0.3s ease;
+}
+
+#input button
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 150px;
+    border-radius: 50px;
+    background-color: var(--button-color);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-out, transform 0.3s ease-out, background-color 0.3s ease;
+    user-select: none;
+
+    /* white pixels on the right fix, it works so -_- */
+    position: relative;     
+    left: 2px;
+}
+
+#input button:hover
+{
+    box-shadow: 0px 0px 3px var(--shadow-color);
+    transform: scale(1.02);
+}
+
+/* ======================= Ordered List container + list items ======================= */
+
+#orderedList
+{
+    font-size: 1.5em;
+    list-style-type: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#orderedList li
+{
+    position: relative;
+    margin: 5px 0px;
+    background: transparent;
+    box-shadow: 0px 0px 15px var(--shadow-color);
+    border-radius: 20px;
+    margin: 15px 0px;
+    padding: 10px 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    user-select: none;
+    color: var(--text-color-second);
+
+    overflow-wrap: break-word;
+
+    transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ======================= List items check button + remove button ======================= */
+
+#orderedList span.check
+{
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid var(--text-color-second);
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    transition: border 0.3s ease;
+}
+
+#orderedList li span.remove
+{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    transform: scaleX(1.2);
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#orderedList li.checked
+{
+    background-color: var(--checked-color);
+    color: var(--text-color-first);
+}
+
+#orderedList li.checked span.check
+{
+    background-color: rgb(28, 158, 45);
+    border: 2px solid var(--text-color-first);
+}
+
+#orderedList li.checked span.check::after
+{
+    content: "✓";
+    position: absolute;
+    color: white;
+    left: 2px;
+    top: -6px;
+    transform: scaleX(1.5);
+    scale: 50%;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+/* ======================= List items when dragging ======================= */
+
+#orderedList li.dragging
+{
+    background: var(--dragging-color);
+}
+
+#orderedList li.dragging.checked
+{
+    background-color: var(--dragging-checked-color);
+}
+
+
+#orderedList li.over
+{
+    
+}
+
+/* ======================= Button panel ======================= */
+
+#panel
+{
+    position: absolute;
+    left: calc(50% + 250px);
+    top: 0px;
+    margin-left: 10px;
+}
+
+.pannel-buttons
+{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: 15px 10px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    box-shadow: 0px 0px 15px var(--shadow-color);
+    cursor: pointer;
+
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pannel-buttons::before
+{
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    inset: 0;
+    background: var(--primary-gradient);
+    opacity: var(--gradient-opacity);
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+.pannel-buttons:hover
+{
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px var(--shadow-color);
+}
+
+/* ======================= Panel icons ======================= */
+
+#panel svg
+{
+    z-index: 1;
+    transition: fill 0.3s ease;
+}
+
+svg.clean-all-icon
+{
+    width: 40px;
+    height: 40px;
+    fill: var(--text-color-second);
+}
+
+
+svg.light-icon
+{
+    width: 40px;
+    height: 40px;
+    fill: var(--text-color-second);
+}
+svg.dark-icon
+{
+    width: 40px;
+    height: 40px;
+    fill: var(--text-color-second);
+}
+#light-dark svg:first-child
+{
+    display: none;
+}
+.darkmode #light-dark svg:last-child
+{
+    display: none;
+}
+.darkmode #light-dark svg:first-child
+{
+    display: block;
+}
+
+
+svg.customization-icon
+{
+    width: 40px;
+    height: 40px;
+    fill: var(--text-color-second);
+}
+
+/* ======================= Customization Menu ======================= */
+
+#customization-menu.hidden
+{
+    opacity: 0;
+    visibility: hidden;
+}
+
+#customization-menu
+{
+    position: absolute;
+
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    touch-action: pan-y;
+
+    box-sizing: border-box;
+    background-color: var(--primary-color);
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px var(--shadow-color);
+    opacity: 1;
+
+    left: -280px;
+    top: 250px;
+
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+#customization-menu::before
+{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--primary-gradient);
+    opacity: var(--gradient-opacity);
+    border-radius: inherit;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+#customization-menu .scroll-wrapper
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+
+    inset: 0;
+    height: 100%;
+    width: 100%;
+
+    padding-top: 17px;
+    padding-bottom: 17px;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+#scroll-wrapper::-webkit-scrollbar
+{
+    display: none;
+}
+
+#customization-menu span {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* ======================= Theme presets previews ======================= */
+
+.customization-presets
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    width: 160px;
+    height: 60px;
+    background-color: var(--primary-gradient);
+    box-shadow: 0px 0px 15px var(--shadow-color);
+    margin: 17px 10px;
+    border-radius: 10px;
+
+    transition: box-shadow 0.3s ease, scale 0.3s ease, border 0.3s ease;
+}
+
+#customization-menu .customization-presets:first-child
+{
+    margin-top: 0px;
+}
+
+#customization-menu .customization-presets:last-child
+{
+    margin-bottom: 17px;
+}
+
+.customization-presets span
+{
+    height: 100%;
+    width: 100%;
+
+    transition: background-color 0.3s ease;
+}
+
+.customization-presets span#color1
+{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.customization-presets span#color5
+{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+.preset-names
+{
+    position: absolute;
+    color: var(--text-color-second);
+    left: 50%;
+    translate: -50%;
+    top: calc(100% + 5px);
+    font-size: 1.1em;
+    font-weight: bold;
+
+    white-space: nowrap;
+    user-select: none;
+
+    transition: color 0.3s ease;
+}
+
+.customization-presets:hover:not(.selectedPreset)
+{
+    scale: 1.04;
+    box-shadow: 0px 0px 30px var(--shadow-color);
+}
+
+.customization-presets.selectedPreset
+{
+    border: 3px solid var(--text-color-second);
+    border-radius: 15px;
+    box-shadow: 0px -3px 20px var(--selected-preset-shadow);
+}
+
+                        /* PRESET 1 */
+
+#preset1 #color1{background-color: #fafaff;}
+#preset1 #color2{background-color: #cfcfcf;}
+#preset1 #color3{background-color: #aaaaaa;}
+#preset1 #color4{background-color: #888888;}
+#preset1 #color5{background-color: #5f5f5f;}
+
+/* darkmode adaptation */
+
+body.darkmode #preset1 #color1{background-color: #5c5c5c;}
+body.darkmode #preset1 #color2{background-color: #4d4d4d;}
+body.darkmode #preset1 #color3{background-color: #3f3f3f;}
+body.darkmode #preset1 #color4{background-color: #353535;}
+body.darkmode #preset1 #color5{background-color: #2e2e2e;}
+
+                        /* PRESET 2 */
+
+#preset2 #color1{background-color: #FFCDB2;}
+#preset2 #color2{background-color: #FFB4A2;}
+#preset2 #color3{background-color: #E5989B;}
+#preset2 #color4{background-color: #B5838D;}
+#preset2 #color5{background-color: #6D6875;}
+
+                        /* PRESET 3 */
+
+#preset3 #color1{background-color: #FFD6FF;}
+#preset3 #color2{background-color: #E7C6FF;}
+#preset3 #color3{background-color: #C8B6FF;}
+#preset3 #color4{background-color: #B8C0FF;}
+#preset3 #color5{background-color: #BBD0FF;}
+
+                        /* PRESET 4 */
+
+#preset4 #color1{background-color: #C77DFF;}
+#preset4 #color2{background-color: #9D4EDD;}
+#preset4 #color3{background-color: #7B2CBF;}
+#preset4 #color4{background-color: #5A189A;}
+#preset4 #color5{background-color: #3C096C;}
+
+                        /* PRESET 5 */
+
+#preset5 #color1{background-color: #FFB3C1;}
+#preset5 #color2{background-color: #FF8FA3;}
+#preset5 #color3{background-color: #FF758F;}
+#preset5 #color4{background-color: #FF4D6D;}
+#preset5 #color5{background-color: #C9184A;}
+
+                        /* PRESET 6 */
+
+#preset6 #color1{background-color: #F2E9E4;}
+#preset6 #color2{background-color: #C9ADA7;}
+#preset6 #color3{background-color: #9A8C98;}
+#preset6 #color4{background-color: #4A4E69;}
+#preset6 #color5{background-color: #22223B;}
+
+                        /* PRESET 7 */
+
+#preset7 #color1{background-color: #EDE0D4;}
+#preset7 #color2{background-color: #E6CCB2;}
+#preset7 #color3{background-color: #DDB892;}
+#preset7 #color4{background-color: #B08968;}
+#preset7 #color5{background-color: #9C6644;}
+
+                        /* PRESET 8 */
+
+#preset8 #color1{background-color: #CAD2C5;}
+#preset8 #color2{background-color: #84A98C;}
+#preset8 #color3{background-color: #52796F;}
+#preset8 #color4{background-color: #354F52;}
+#preset8 #color5{background-color: #2F3E46;}
+
+/* ======================= Adaptation to devices with smaller resolution ======================= */
+
+@media (max-width: 700px)
+{
+    #panel
+    {
+        position: static;
+    }
+
+    .pannel-buttons
+    {
+        margin-right: 0;
+    }
+
+    #customization-menu
+    {
+        left: 180px;
+        top: 250px;
+    }
+}
+
+@media (max-width: 440px)
+{
+    #header
+    {
+        min-width: 300px;
+        margin-bottom: 130px;
+    }
+
+    #container
+    {
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        translate: -50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: row;
+    }
+
+    #ToDoList
+    {
+        width: 380px;
+    }
+
+    #input input
+    {
+        width: 180px;
+    }
+
+    #container
+    {
+        margin-top: 100px;
+    }
+
+    #panel
+    {
+        display: flex;
+
+        position: absolute;
+        left: calc(50%);
+        translate: -50%;
+        top: calc(0px - 70px - 30px);
+        margin-left: 0;
+    }
+
+    .pannel-buttons
+    {
+        margin: 15px 10px;
+    }
+
+    #customization-menu
+    {
+        left: -15px;
+        top: 100px;
+    }
+}
+
+/* ======================= Adaptation hover on desktop ======================= */
+
+@media (hover: hover) and (pointer: fine)
+{
+    #orderedList li:hover
+    {
+        transform: scale(1.01);
+    }
+}
+
+/* ======================= Adaptation hover on mobile ======================= */
+
+@media (hover: none) and (pointer: coarse)
+{
+  .pannel-buttons:active,
+  #input button:active,
+  #orderedList li:active 
+  {
+    transform: scale(0.97);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+   .pannel-buttons:hover,
+  #input button:hover,
+  #orderedList li:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+
+/* ======================= Fallback presets ======================= */
+
+:root
+{
+    --background-gradient: none;
+    --background-color: #fafaff;
+
+    --primary-gradient: none;
+    --primary-color: #cfcfcf;
+
+    --header-gradient: none;
+    --header-color: #aaaaaa;
+
+    --button-color: #da2c38;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #8bb492;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #d3d3d3;
+    --dragging-checked-color: #97c09e;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #575757;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #888888;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --gradient-opacity: 0;
+}
+
+.darkmode
+{
+    --background-gradient: none;
+    --background-color: #222222;
+
+    --primary-gradient: none;
+    --primary-color: #3f3f3f;
+
+    --header-gradient: none;
+    --header-color: #363636;
+
+    --button-color: #da2c38;
+    --input-color: #c7c7c7;
+    --input-placeholder-color: #1d1d1d;
+
+    --checked-color: #769c7d;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #5a5a5a;
+    --dragging-checked-color: #92b898;
+
+    --text-color-first: #3b3b3b;
+    --text-color-second: #b4b4b4;
+    --text-color-header: #b4b4b4;
+
+    --shadow-color: #252525;
+    --selected-preset-shadow: white;
+
+    --gradient-opacity: 0;
+}
+
+/* ======================= Themes ======================= */
+
+.preset1-light
+{
+    --background-gradient: none;
+    --background-color: #fafaff;
+
+    --primary-gradient: none;
+    --primary-color: #cfcfcf;
+
+    --header-gradient: none;
+    --header-color: #aaaaaa;
+
+    --button-color: #da2c38;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #8bb492;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #d3d3d3;
+    --dragging-checked-color: #97c09e;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #575757;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #888888;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --gradient-opacity: 0;
+}
+
+.preset1-dark
+{
+    --background-gradient: none;
+    --background-color: #222222;
+
+    --primary-gradient: none;
+    --primary-color: #3f3f3f;
+
+    --header-gradient: none;
+    --header-color: #363636;
+
+    --button-color: #da2c38;
+    --input-color: #c7c7c7;
+    --input-placeholder-color: #1d1d1d;
+
+    --checked-color: #769c7d;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #5a5a5a;
+    --dragging-checked-color: #92b898;
+
+    --text-color-first: #3b3b3b;
+    --text-color-second: #b4b4b4;
+    --text-color-header: #b4b4b4;
+
+    --shadow-color: #252525;
+    --selected-preset-shadow: white;
+
+    --gradient-opacity: 0;
+}
+
+.preset2-light
+{
+    --background-gradient: linear-gradient(30deg, #FFCDB2, #FFB4A2, #E5989B, #B5838D 80%, #6D6875);
+    --background-color: #E5989B;
+
+    --primary-gradient: linear-gradient(70deg, #FFCDB2 -40%, #FFB4A2, #E5989B);
+    --primary-color: #FFB4A2;
+
+    --header-gradient: linear-gradient(25deg, #E5989B 30%, #B5838D, #6D6875 110%);
+    --header-color: #da8f92;
+
+    --button-color: #f54a4a;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #98bd87;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #f5b9ab;
+    --dragging-checked-color: #9fc28f;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #544f5c;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #5f5858;
+    --selected-preset-shadow: rgb(49, 49, 49);
+
+    --gradient-opacity: 1;
+}
+
+.preset2-dark
+{
+    --background-gradient: linear-gradient(30deg, #A4161A, #660708, #22272b, #161A1D 80%, #0B090A);
+    --background-color: #660708;
+
+    --primary-gradient: linear-gradient(70deg, #A4161A -40%, #660708, #22272b);
+    --primary-color: #A4161A;
+
+    --header-gradient: linear-gradient(25deg, #A4161A -30%, #660708, #22272b 110%);
+    --header-color: #A4161A;
+
+    --button-color: #c03333;
+    --input-color: rgb(206, 206, 206);
+
+    --checked-color: #8db87a;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #660708;
+    --dragging-checked-color: rgb(169, 204, 153);
+
+    --text-color-first: #2e2c2c;
+    --text-color-second: #dbdbdb;
+    --text-color-header: #dbdbdb;
+
+    --shadow-color: #070707;
+    --selected-preset-shadow: rgb(212, 212, 212);
+
+    --gradient-opacity: 1;
+}
+
+.preset3-light
+{
+    --background-gradient: linear-gradient(30deg, #FFD6FF, #E7C6FF, #C8B6FF, #B8C0FF, #BBD0FF);
+    --background-color: #C8B6FF;
+
+    --primary-gradient: linear-gradient(45deg, #FFD6FF -10%, #E7C6FF, #C8B6FF 90%, #B8C0FF, #BBD0FF);
+    --primary-color: #C8B6FF;
+
+    --header-gradient: linear-gradient(30deg, #E7C6FF -20%, #beacf3, #abb3f0, #b0c6f3 85%);
+    --header-color: #beacf3;
+
+    --button-color: #e2455a;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #89beaa;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #eacffd;
+    --dragging-checked-color: #8bc4ae;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #525758;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #6a91aa;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --gradient-opacity: 1;
+}
+
+.preset4-light
+{
+    --background-gradient: linear-gradient(30deg, #C77DFF -10%, #9D4EDD, #7B2CBF, #5A189A, #3C096C 120%);
+    --background-color: #9D4EDD;
+
+    --primary-gradient: linear-gradient(30deg, #C77DFF -70%, #9D4EDD, #7B2CBF);
+    --primary-color: #9D4EDD;
+
+    --header-gradient: linear-gradient(30deg, #9D4EDD -70%, #7B2CBF, #5A189A, #3C096C 125%);
+    --header-color: #7B2CBF;
+
+    --button-color: #f02540;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #7bada1;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #9D4EDD;
+    --dragging-checked-color: #83b9ad;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #f2e2fd;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #543e61;
+    --selected-preset-shadow: rgb(30, 8, 36);
+
+    --gradient-opacity: 1;
+}
+
+.preset5-light
+{
+    --background-gradient: linear-gradient(30deg, #FFB3C1 -10%, #FF8FA3, #FF758F, #FF4D6D, #C9184A 120%);
+    --background-color: #FF8FA3;
+
+    --primary-gradient: linear-gradient(30deg, #FFB3C1 -10%, #FF8FA3, #FF758F 100%);
+    --primary-color: #FF8FA3;
+
+    --header-gradient: linear-gradient(30deg, #FF758F 30%, #FF4D6D, #C9184A 130%);
+    --header-color: #FF758F;
+
+    --button-color: #d11d50;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #9cbb83;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #ffa0b2;
+    --dragging-checked-color: #a3c08b;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #ffffff;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #966b76;
+    --selected-preset-shadow: rgb(36, 36, 36);
+
+    --gradient-opacity: 1;
+}
+
+.preset6-light
+{
+    --background-gradient: linear-gradient(30deg, #F2E9E4 -10%, #C9ADA7, #9A8C98, #4A4E69, #22223B 120%);
+    --background-color: #9A8C98;
+
+    --primary-gradient: linear-gradient(30deg, #F2E9E4 -20%, #C9ADA7 60%, #8f828d 120%);
+    --primary-color: #C9ADA7;
+
+    --header-gradient: linear-gradient(20deg, #9A8C98, #4A4E69, #22223B 120%);
+    --header-color: #9A8C98;
+
+    --button-color: #da2c38;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #8bb492;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #d4bfba;
+    --dragging-checked-color: #97c09e;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #575757;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #464646;
+    --selected-preset-shadow: rgb(46, 46, 46);
+
+    --gradient-opacity: 1;
+}
+
+.preset7-light
+{
+    --background-gradient: linear-gradient(30deg, #EDE0D4 -10%, #E6CCB2 10%, #DDB892, #B08968, #9C6644 100%);
+    --background-color: #B08968;
+
+    --primary-gradient: linear-gradient(30deg, #EDE0D4 -60%, #E6CCB2, #DDB892 100%);
+    --primary-color: #E6CCB2;
+
+    --header-gradient: linear-gradient(10deg, #DDB892, #B08968, #9C6644 100%);
+    --header-color: #B08968;
+
+    --button-color: #e03641;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #93be82;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #E6CCB2;
+    --dragging-checked-color: #97c486;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #504a44;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #92806f;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --gradient-opacity: 1;
+}
+
+.preset8-light
+{
+    --background-gradient: linear-gradient(30deg, #CAD2C5, #84A98C, #52796F, #354F52, #2F3E46);
+    --background-color: #52796F;
+
+    --primary-gradient: linear-gradient(30deg, #CAD2C5, #84A98C, #52796F 120%);
+    --primary-color: #84A98C;
+
+    --header-gradient: linear-gradient(30deg, #84A98C, #52796F, #354F52);
+    --header-color: #52796F;
+
+    --button-color: #da2c38;
+    --input-color: white;
+    --input-placeholder-color: #202020;
+
+    --checked-color: #69b973;
+
+    --button-color-hover: #df3843;
+    --dragging-color: #a0bea6;
+    --dragging-checked-color: #76c280;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #2a362b;
+    --text-color-header: #ffffff;
+    
+    --shadow-color: #384d46;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --gradient-opacity: 1;
+}
