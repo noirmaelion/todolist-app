@@ -457,12 +457,11 @@ svg.customization-icon
 
     width: 160px;
     height: 60px;
-    background-color: var(--primary-gradient);
     box-shadow: 0px 0px 15px var(--shadow-color);
     margin: 17px 10px;
     border-radius: 10px;
 
-    transition: box-shadow 0.3s ease, scale 0.3s ease, border 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
 #customization-menu .customization-presets:first-child
@@ -671,19 +670,19 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
     }
 }
 
-/* ======================= Desktop hover effects ======================= */
+/* ======================= Desktop responsive effects ======================= */
 
 @media (hover: hover) and (pointer: fine)
 {
-    #input button:hover
+    #input button:active
     {
-        box-shadow: 0px 0px 3px var(--shadow-color);
-        transform: scale(1.02);
+        box-shadow: 0px 0px 5px var(--shadow-color);
+        transform: scale(0.95);
     }
 
-    #orderedList li:hover
+    #orderedList li:active
     {
-        transform: scale(1.01);
+        transform: scale(0.99);
     }
 
     .pannel-buttons:hover
@@ -691,19 +690,60 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
         transform: scale(1.05);
         box-shadow: 0px 0px 20px var(--shadow-color);
     }
+    .pannel-buttons:active
+    {
+        transform: scale(0.99);
+        box-shadow: 0px 0px 10px var(--shadow-color);
+    }
 
     .customization-presets:hover:not(.selectedPreset)
     {
-        scale: 1.04;
-        box-shadow: 0px 0px 30px var(--shadow-color);
+        transform: scale(1.04);
+        box-shadow: 0px -3px 30px var(--shadow-color);
+    }
+    .customization-presets:active:not(.selectedPreset)
+    {
+        transform: scale(0.99);
+        box-shadow: 0px -3px 30px var(--selected-preset-shadow);
+    }
+    .customization-presets:active
+    {
+        transform: scale(0.99);
+        box-shadow: 0px -3px 30px var(--selected-preset-shadow);
     }
 }
 
-/* ======================= Mobile hover effects ======================= */
+/* ======================= Mobile responsive effects ======================= */
 
 @media (hover: none) and (pointer: coarse)
 {
-    
+    #input button:active
+    {
+        box-shadow: 0px 0px 5px var(--shadow-color);
+        transform: scale(0.95);
+    }
+
+    #orderedList li:active
+    {
+        transform: scale(0.99);
+    }
+
+    .pannel-buttons:active
+    {
+        transform: scale(0.99);
+        box-shadow: 0px 0px 10px var(--shadow-color);
+    }
+
+    .customization-presets:active:not(.selectedPreset)
+    {
+        transform: scale(0.99);
+        box-shadow: 0px -3px 30px var(--selected-preset-shadow);
+    }
+    .customization-presets:active
+    {
+        transform: scale(0.99);
+        box-shadow: 0px -3px 30px var(--selected-preset-shadow);
+    }
 }
 
 
