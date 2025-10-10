@@ -177,12 +177,6 @@ body::before {
     left: 2px;
 }
 
-#input button:hover
-{
-    box-shadow: 0px 0px 3px var(--shadow-color);
-    transform: scale(1.02);
-}
-
 /* ======================= Ordered List container + list items ======================= */
 
 #orderedList
@@ -326,12 +320,6 @@ body::before {
     pointer-events: none;
 
     transition: opacity 0.3s ease;
-}
-
-.pannel-buttons:hover
-{
-    transform: scale(1.05);
-    box-shadow: 0px 0px 20px var(--shadow-color);
 }
 
 /* ======================= Panel icons ======================= */
@@ -524,12 +512,6 @@ svg.customization-icon
     transition: color 0.3s ease;
 }
 
-.customization-presets:hover:not(.selectedPreset)
-{
-    scale: 1.04;
-    box-shadow: 0px 0px 30px var(--shadow-color);
-}
-
 .customization-presets.selectedPreset
 {
     border: 3px solid var(--text-color-second);
@@ -689,35 +671,39 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
     }
 }
 
-/* ======================= Adaptation hover on desktop ======================= */
+/* ======================= Desktop hover effects ======================= */
 
 @media (hover: hover) and (pointer: fine)
 {
+    #input button:hover
+    {
+        box-shadow: 0px 0px 3px var(--shadow-color);
+        transform: scale(1.02);
+    }
+
     #orderedList li:hover
     {
         transform: scale(1.01);
     }
+
+    .pannel-buttons:hover
+    {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 20px var(--shadow-color);
+    }
+
+    .customization-presets:hover:not(.selectedPreset)
+    {
+        scale: 1.04;
+        box-shadow: 0px 0px 30px var(--shadow-color);
+    }
 }
 
-/* ======================= Adaptation hover on mobile ======================= */
+/* ======================= Mobile hover effects ======================= */
 
 @media (hover: none) and (pointer: coarse)
 {
-  .pannel-buttons:active,
-  #input button:active,
-  #orderedList li:active 
-  {
-    transform: scale(0.97);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-  }
-
-   .pannel-buttons:hover,
-  #input button:hover,
-  #orderedList li:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
+    
 }
 
 
