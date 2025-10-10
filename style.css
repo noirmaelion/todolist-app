@@ -387,6 +387,9 @@ svg.customization-icon
 {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease, visibility 0s ease 0.3s;
 }
 
 #customization-menu
@@ -406,12 +409,15 @@ svg.customization-icon
     height: 300px;
     border-radius: 50px;
     box-shadow: 0px 0px 15px var(--shadow-color);
+
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 
     left: -280px;
     top: 250px;
 
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease, visibility 0s ease 0s;
 }
 
 #customization-menu::before
