@@ -175,6 +175,8 @@ body::before {
     /* white pixels on the right fix, it works so -_- */
     position: relative;     
     left: 2px;
+
+    touch-action: manipulation;
 }
 
 /* ======================= Ordered List container + list items ======================= */
@@ -201,10 +203,11 @@ body::before {
     padding-right: 50px;
     user-select: none;
     color: var(--text-color-second);
-
     overflow-wrap: break-word;
 
     transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+
+    touch-action: manipulation;
 }
 
 /* ======================= List items check button + remove button ======================= */
@@ -307,6 +310,8 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    touch-action: manipulation;
 }
 
 .pannel-buttons::before
@@ -462,6 +467,8 @@ svg.customization-icon
     border-radius: 10px;
 
     transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
+
+    touch-action: manipulation;
 }
 
 #customization-menu .customization-presets:first-child
@@ -715,7 +722,7 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
 
 /* ======================= Mobile responsive effects ======================= */
 
-@media (hover: none) and (pointer: coarse)
+@media (hover: none), (pointer: coarse)
 {
     #input button:active
     {

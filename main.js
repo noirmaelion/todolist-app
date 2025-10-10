@@ -11,6 +11,9 @@ inputText.addEventListener("keydown", addTask);
 displayStoredTasks();
 applyThemeHelper(localStorage.getItem("preset") || "preset1", localStorage.getItem("mode") || "light");
 
+document.addEventListener("touchstart", () => {}, true);
+// fixes touch on ios
+
 // ======================= Add Task Logic =======================
 
 function addTask(event)
