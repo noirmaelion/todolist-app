@@ -737,18 +737,18 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
 
     .pannel-buttons:active
     {
-        transform: scale(0.99);
-        box-shadow: 0px 0px 10px var(--shadow-color);
+        transform: scale(0.95);
+        box-shadow: 0px -3px 10px var(--shadow-color);
     }
 
     .customization-presets:active:not(.selectedPreset)
     {
-        transform: scale(0.99);
+        transform: scale(0.95);
         box-shadow: 0px -3px 30px var(--selected-preset-shadow);
     }
     .customization-presets:active
     {
-        transform: scale(0.99);
+        transform: scale(0.95);
         box-shadow: 0px -3px 30px var(--selected-preset-shadow);
     }
 }
