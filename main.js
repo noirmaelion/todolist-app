@@ -294,8 +294,11 @@ document.addEventListener("click", function(event)
        !customizationBtn.contains(event.target) &&
        !event.target.closest("#light-dark, .light-dark"))
     {
-        customizationMenu.classList.remove("active");
-        customizationMenu.classList.add("hidden");
+        if(customizationMenu.classList.contains("active")) // because i didnt added hidden class by default, when we click it applyes hidden class and animation starts, so it flicks for a second. Could be removed if i explicitly add hidden class in html, but idk whats better yet
+        {
+            customizationMenu.classList.remove("active");
+            customizationMenu.classList.add("hidden");
+        }
     }
 });
 
