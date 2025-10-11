@@ -170,7 +170,16 @@ panel.addEventListener("click", function(event)
 
     if(event.target.closest("#customization, .customization"))
     {
-        document.getElementById("customization-menu").classList.toggle("hidden");
+        if(customizationMenu.classList.contains("active"))
+        {
+            customizationMenu.classList.remove("active");
+            customizationMenu.classList.add("hidden")
+        }
+        else
+        {
+            customizationMenu.classList.remove("hidden");
+            customizationMenu.classList.add("active");
+        }
         return;
     }
 });
@@ -285,6 +294,7 @@ document.addEventListener("click", function(event)
        !customizationBtn.contains(event.target) &&
        !event.target.closest("#light-dark, .light-dark"))
     {
+        customizationMenu.classList.remove("active");
         customizationMenu.classList.add("hidden");
     }
 });
