@@ -414,15 +414,16 @@ svg.customization-icon
     height: 300px;
     border-radius: 50px;
     box-shadow: 0px 0px 15px var(--shadow-color);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
     left: -280px;
     top: 250px;
 
     transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+
+    /* default state, or you can just add hidden class in html and remove additional js logic when we click outside of the window */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* no i cannot add hidden class as default in html, because hide animation will be played each time you reload page */
 }
 
 #customization-menu::before
@@ -461,7 +462,8 @@ svg.customization-icon
     display: none;
 }
 
-#customization-menu span {
+#customization-menu span 
+{
     -webkit-user-drag: none;
     -webkit-user-select: none;
     user-select: none;
@@ -705,12 +707,15 @@ svg.customization-icon
     {
         opacity: 0;
         visibility: visible;
+        transform: translateX(170px) translateY(-170px) scale(0.3) rotateX(80deg) rotateY(30deg);
+        border-radius: 50%;
     }
 
     100%
     {
         opacity: 1;
         visibility: visible;
+        transform: translateX(0px) translateY(0px) scale(1) rotateX(0deg) rotateY(0deg);
     }
 }
 
@@ -720,12 +725,19 @@ svg.customization-icon
     {
         opacity: 1;
         visibility: visible;
+        transform: translateX(0px) translateY(0px) scale(1) rotateX(0deg) rotateY(0deg);
+    }
+
+    70%
+    {
+        opacity: 0;
     }
 
     99%
     {
-        opacity: 0;
         visibility: visible;
+        transform: translateX(170px) translateY(-170px) scale(0.3) rotateX(80deg) rotateY(30deg);
+        border-radius: 50%;
     }
 
     100%
