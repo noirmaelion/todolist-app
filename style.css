@@ -28,7 +28,7 @@ body
 
     overflow-x: hidden;
     overscroll-behavior-x: none;
-    contain: layout paint;
+    /* contain: layout paint; */
 }
 
 /* gradient overlay */
