@@ -13,6 +13,7 @@ body
     position: relative;
     background-color: var(--background-color);
     font-family: sans-serif;
+    margin: 0;
 
     transition: background-color 0.3s ease;
     overflow-x: clip;
@@ -21,8 +22,8 @@ body
 /* gradient overlay */
 body::before {
   content: "";
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  height: 100dvh;
   background: var(--background-gradient, none);
   z-index: -1;
   opacity: var(--gradient-opacity);
