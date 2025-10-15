@@ -13,43 +13,27 @@ body
     position: relative;
     background-color: var(--background-color);
     font-family: sans-serif;
-    margin: 0;
-    padding: 0;
+
     transition: background-color 0.3s ease;
-}
-
-#viewport
-{
-    position: relative;
-    width: 100%;
-    height: 100dvh;
-    margin: 0;
-    padding: 0;
-
-    overflow-x: hidden;
-    overscroll-behavior-x: none;
-    /* contain: layout paint; */
-    /* white space when scrolling fix, forces gpu to prerender */
-    transform: translateZ(0);
-    will-change: opacity, transform;
+    overflow-x: clip;
 }
 
 /* gradient overlay */
-#viewport::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: var(--background-gradient, none);
-    z-index: -1;
-    opacity: var(--gradient-opacity);
-    pointer-events: none;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--background-gradient, none);
+  z-index: -1;
+  opacity: var(--gradient-opacity);
+  pointer-events: none;
 
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 
-    /* white space when scrolling fix, forces gpu to prerender */
-    transform: translateZ(0);
-    will-change: opacity, transform;
-    backface-visibility: hidden;
+  /* white space when scrolling fix, forces gpu to prerender */
+  transform: translateZ(0);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
 /* ======================= Header ======================= */
@@ -1210,7 +1194,7 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
     --primary-gradient: linear-gradient(30deg, #EDE0D4 -60%, #E6CCB2, #DDB892 100%);
     --primary-color: #E6CCB2;
 
-    --header-gradient: linear-gradient(30deg, #DDB892, #B08968, #9C6644 100%);
+    --header-gradient: linear-gradient(10deg, #DDB892, #B08968, #9C6644 100%);
     --header-color: #B08968;
 
     --button-color: #e03641;
