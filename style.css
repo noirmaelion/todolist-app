@@ -23,7 +23,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: var(--background-gradient, none);
+  background: var(--background-gradient, none);
   z-index: -1;
   opacity: var(--gradient-opacity);
   pointer-events: none;
@@ -31,9 +31,9 @@ body::before {
   transition: opacity 0.3s ease;
 
   /* white space when scrolling fix, forces gpu to prerender */
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
   will-change: opacity, transform;
-  backface-visibility: hidden;
+  contain: paint;
 }
 
 /* ======================= Header ======================= */
