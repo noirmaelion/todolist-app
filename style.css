@@ -23,7 +23,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: var(--background-gradient, none);
+  background-image: var(--background-gradient, none);
   z-index: -1;
   opacity: var(--gradient-opacity);
   pointer-events: none;
