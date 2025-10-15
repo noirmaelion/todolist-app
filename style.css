@@ -29,6 +29,9 @@ body
     overflow-x: hidden;
     overscroll-behavior-x: none;
     /* contain: layout paint; */
+    /* white space when scrolling fix, forces gpu to prerender */
+    transform: translateZ(0);
+    will-change: opacity, transform;
 }
 
 /* gradient overlay */
