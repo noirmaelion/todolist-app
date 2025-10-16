@@ -14,6 +14,9 @@ applyThemeHelper(localStorage.getItem("preset") || "preset1", localStorage.getIt
 document.addEventListener("touchstart", () => {}, true);
 // fixes touch on ios
 
+setVH();
+// fix gradient white space on mobile scroll
+
 // ======================= Add Task Logic =======================
 
 function addTask(event)
@@ -294,7 +297,7 @@ document.addEventListener("click", function(event)
        !customizationBtn.contains(event.target) &&
        !event.target.closest("#light-dark, .light-dark"))
     {
-        if(customizationMenu.classList.contains("active")) // because i didnt added hidden class by default, when we click it applyes hidden class and animation starts, so it flicks for a second. Could be removed if i explicitly add hidden class in html, but idk whats better yet
+        if(customizationMenu.classList.contains("active")) // because i didnt added hidden class by default, when we click it applyes hidden class and animation starts, so it flicks for a second. Could be removed if i explicitly add hidden class in html, but idk whats better yet. NOpe update it wont work, because animation will start on load i think
         {
             customizationMenu.classList.remove("active");
             customizationMenu.classList.add("hidden");
@@ -342,3 +345,12 @@ function animateScroll() {
     isAnimating = false;
   }
 };
+
+// ======================= FIX gradient white gap when scrolling on mobile, when browser UI hides =======================
+
+function setVH()
+{
+    document.body.style.setProperty(`--vh`, `${window.innerHeight * 0.01}px`);
+}
+
+window.addEventListener("resize", setVH);

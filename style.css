@@ -23,7 +23,9 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  height: 120vh;
+  /* extend gradient to prevent white gap when mobile browser UI hides */
+  /* height: 120vh; */
+  height: calc(var(--vh, 1vh) * 100);
   background: var(--background-gradient, none);
   z-index: -1;
   opacity: var(--gradient-opacity);
@@ -416,6 +418,7 @@ svg.customization-icon
     flex-wrap: wrap;
     overflow-y: hidden;
     touch-action: pan-y;
+    /* Make mobile swipes work anywhere inside customization menu*/
 
     box-sizing: border-box;
     background-color: var(--primary-color);
@@ -464,6 +467,7 @@ svg.customization-icon
     padding-bottom: 17px;
 
     -webkit-overflow-scrolling: touch;
+    /* smooth iOS scrolling */
 }
 
 #scroll-wrapper::-webkit-scrollbar
@@ -875,7 +879,7 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
 #preset8 #color4{background-color: #354F52;}
 #preset8 #color5{background-color: #2F3E46;}
 
-/* ======================= Fallback presets ======================= */
+/* ======================= Fallback variables ======================= */
 
 :root
 {
@@ -906,6 +910,9 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
     --selected-preset-shadow: rgb(65, 65, 65);
 
     --gradient-opacity: 0;
+
+
+    --vh: 1vh;
 }
 
 .darkmode
