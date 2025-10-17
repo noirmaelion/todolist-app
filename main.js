@@ -14,7 +14,7 @@ applyThemeHelper(localStorage.getItem("preset") || "preset1", localStorage.getIt
 document.addEventListener("touchstart", () => {}, true);
 // fixes touch on ios
 
-setVH();
+// setVH();
 // fix gradient white space on mobile scroll
 
 // ======================= Add Task Logic =======================
@@ -348,9 +348,11 @@ function animateScroll() {
 
 // ======================= FIX gradient white gap when scrolling on mobile, when browser UI hides =======================
 
-function setVH()
-{
-    document.body.style.setProperty(`--vh`, `${window.innerHeight * 0.01}px`);
-}
+// function setVH()
+// {
+//     document.body.style.setProperty(`--vh`, `${window.innerHeight * 0.01}px`);
+// }
 
-window.addEventListener("resize", setVH);
+// window.addEventListener("resize", setVH);
+
+// doesn't work, maybe because innerHeight doesn't change while i still hold the finger and scroll, idk weird, ill use 120vh and call it fixed
