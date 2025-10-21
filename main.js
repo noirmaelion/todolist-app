@@ -372,10 +372,13 @@ let lastTap = 0;
 
 function handleTouch(e)
 {
+    const li = e.target.closest("li.sortable-item");
+
     const now = Date.now();
     const timeSince = now - lastTap;
-    if(timeSince < 300 && timeSince > 0)
+    if(timeSince < 300 && timeSince > 100)
     {
+        if(!li) return;
         handleEdit(e);
     }
 
