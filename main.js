@@ -1,10 +1,7 @@
-let inputText = document.getElementById("InputText");
-let addButton = document.getElementById("AddButton");
-let orderedList = document.getElementById("orderedList");
-let panel = document.getElementById("panel");
-
-addButton.addEventListener("click", addTask);
-inputText.addEventListener("keydown", addTask);
+const inputText = document.getElementById("InputText");
+const addButton = document.getElementById("AddButton");
+const orderedList = document.getElementById("orderedList");
+const panel = document.getElementById("panel");
 
 // ======================= On Load =======================
 
@@ -19,10 +16,14 @@ document.addEventListener("touchstart", () => {}, true);
 
 // ======================= Add Task Logic =======================
 
+addButton.addEventListener("click", addTask);
+inputText.addEventListener("keydown", addTask);
+
 function addTask(event)
 {
-    if(inputText.value === "" && event.type === "click" || inputText.value === "" && event.key === "Enter")
+    if(inputText.value.trim() === "" && event.type === "click" || inputText.value.trim() === "" && event.key === "Enter")
     {
+        inputText.value = "";
         inputText.setAttribute("placeholder", "Please Enter Something");
 
         setTimeout(() =>
@@ -38,7 +39,22 @@ function addTask(event)
         let li = document.createElement("li");
         li.setAttribute('draggable', 'true');
         li.classList.add('sortable-item')
-        li.innerHTML = '<span class="check"></span>' + inputText.value + '<span class="remove">X</span>';
+
+        let check = document.createElement("span");
+        check.className = "check";
+
+        let remove = document.createElement("span");
+        remove.className = "remove";
+        remove.textContent = "X";
+
+        let text = document.createTextNode(inputText.value.trim());
+
+        li.appendChild(check);
+        li.appendChild(text);
+        li.appendChild(remove);
+
+        // prev version had huge vulnurability 
+        // li.innerHTML = '<span class="check"></span>' + inputText.value + '<span class="remove">X</span>';
 
         orderedList.appendChild(li);
         inputText.value = "";
@@ -86,7 +102,8 @@ let draggingItem = null;
 
 list.addEventListener("dragstart", (e) =>
 {
-    if(!e.target.classList.contains("sortable-item"))
+    console.log(e.target);
+    if(!e.target.classList.contains("sortable-item") || e.target.classList.contains("edit"))
     {
         e.preventDefault();
         return;
@@ -345,6 +362,69 @@ function animateScroll() {
     isAnimating = false;
   }
 };
+
+// ======================= Edit Task =======================
+
+orderedList.addEventListener("dblclick", handleEdit);
+orderedList.addEventListener("touchstart", handleTouch);
+
+let lastTap = 0;
+
+function handleTouch(e)
+{
+    const now = Date.now();
+    const timeSince = now - lastTap;
+    if(timeSince < 300 && timeSince > 0)
+    {
+        handleEdit(e);
+    }
+
+    lastTap = now;
+}
+
+function handleEdit(e)
+{
+    const li = e.target.closest("li.sortable-item");
+
+    if(!li) return;
+    if(e.target.classList.contains("check") || e.target.classList.contains("remove")) return;
+
+    const textNode = li.childNodes[1];
+    const oldText = textNode.textContent.trim();
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = oldText;
+    input.className = "input-edit";
+
+    li.replaceChild(input, textNode);
+    li.classList.add("edit");
+    input.focus();
+    input.select();
+
+    input.addEventListener("keydown", function(e)
+    {
+        if(e.key === "Enter")
+        {
+            const newText = input.value.trim() || oldText;
+            const newTask = document.createTextNode(newText);
+            li.replaceChild(newTask, input);
+            li.classList.remove("edit");
+
+            saveTasks();
+        }
+    });
+
+    input.addEventListener("blur", function(e)
+    {
+        const newText = input.value.trim() || oldText;
+        const newTask = document.createTextNode(newText);
+        li.replaceChild(newTask, input);
+        li.classList.remove("edit");
+
+        saveTasks();
+    })
+}
 
 // ======================= FIX gradient white gap when scrolling on mobile, when browser UI hides =======================
 

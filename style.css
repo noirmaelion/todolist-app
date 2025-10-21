@@ -276,7 +276,7 @@ body::before {
     cursor: pointer;
 }
 
-/* ======================= List items when dragging ======================= */
+/* ======================= List items when dragging + Edit on double click input element ======================= */
 
 #orderedList li.dragging
 {
@@ -292,6 +292,24 @@ body::before {
 #orderedList li.over
 {
     
+}
+
+.input-edit
+{
+    /* border: none; */
+    outline: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* border: 3px inset var(--primary-color); */
 }
 
 /* ======================= Button panel ======================= */
