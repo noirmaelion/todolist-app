@@ -372,12 +372,11 @@ let lastTap = 0;
 
 function handleTouch(e)
 {
-    e.preventDefault();
-
     const now = Date.now();
     const timeSince = now - lastTap;
     if(timeSince < 300 && timeSince > 0)
     {
+        e.preventDefault();
         handleEdit(e);
     }
 
