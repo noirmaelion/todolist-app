@@ -372,6 +372,8 @@ let lastTap = 0;
 
 function handleTouch(e)
 {
+    e.preventDefault();
+
     const now = Date.now();
     const timeSince = now - lastTap;
     if(timeSince < 300 && timeSince > 0)
@@ -400,7 +402,11 @@ function handleEdit(e)
     li.replaceChild(input, textNode);
     li.classList.add("edit");
     input.focus();
-    input.select();
+
+    if(!(`ontouchstart` in window || navigator.maxTouchPoints > 0))
+    {
+        input.select();
+    }
 
     input.addEventListener("keydown", function(e)
     {
