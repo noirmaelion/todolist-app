@@ -372,13 +372,10 @@ let lastTap = 0;
 
 function handleTouch(e)
 {
-    const li = e.target.closest("li.sortable-item");
-
     const now = Date.now();
     const timeSince = now - lastTap;
-    if(timeSince < 300 && timeSince > 100)
+    if(timeSince < 300 && timeSince > 0)
     {
-        if(!li) return;
         handleEdit(e);
     }
 
@@ -420,12 +417,16 @@ function handleEdit(e)
 
     input.addEventListener("blur", function(e)
     {
-        const newText = input.value.trim() || oldText;
-        const newTask = document.createTextNode(newText);
-        li.replaceChild(newTask, input);
-        li.classList.remove("edit");
+        setTimeout(() => {
+            if(document.activeElement === input) return;
 
-        saveTasks();
+            const newText = input.value.trim() || oldText;
+            const newTask = document.createTextNode(newText);
+            li.replaceChild(newTask, input);
+            li.classList.remove("edit");
+
+            saveTasks();
+        }, 200);
     })
 }
 
