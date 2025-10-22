@@ -387,6 +387,7 @@ function handleEdit(e)
 {
     const li = e.target.closest("li.sortable-item");
 
+    if (!li) return;
     if( e.target.classList.contains("check") || 
         e.target.classList.contains("remove") || 
         e.target.classList.contains("edit") || 
@@ -451,5 +452,4 @@ function handleEdit(e)
 // const isMobile = (
 //     ('ontouchstart' in window || navigator.maxTouchPoints > 0) &&
 //     window.matchMedia('(max-width: 768px)').matches
-
 // );
