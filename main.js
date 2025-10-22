@@ -102,7 +102,6 @@ let draggingItem = null;
 
 list.addEventListener("dragstart", (e) =>
 {
-    console.log(e.target);
     if(!e.target.classList.contains("sortable-item") || e.target.classList.contains("edit"))
     {
         e.preventDefault();

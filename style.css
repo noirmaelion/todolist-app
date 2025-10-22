@@ -849,6 +849,12 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
 #preset2 #color4{background-color: #B5838D;}
 #preset2 #color5{background-color: #6D6875;}
 
+body.darkmode #preset2 #color1{background-color: #A4161A;}
+body.darkmode #preset2 #color2{background-color: #860c10;}
+body.darkmode #preset2 #color3{background-color: #660708;}
+body.darkmode #preset2 #color4{background-color: #3d1c1c;}
+body.darkmode #preset2 #color5{background-color: #22272b;}
+
 /*                                PRESET 3                                */
 
 #preset3 #color1{background-color: #FFD6FF;}
@@ -1080,7 +1086,7 @@ body.darkmode #preset1 #color5{background-color: #2e2e2e;}
     --dragging-checked-color: rgb(169, 204, 153);
 
     --text-color-first: #2e2c2c;
-    --text-color-second: #dbdbdb;
+    --text-color-second: #cacaca;
     --text-color-header: #dbdbdb;
 
     --shadow-color: #070707;
