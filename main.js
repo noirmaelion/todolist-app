@@ -341,26 +341,26 @@ let scrollVelocity = 0; // how fast we scroll
 let isAnimating = false;
 
 customizationMenu.addEventListener("wheel", (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  // Add velocity based on wheel input
-  scrollVelocity += event.deltaY * 0.05; // adjust multiplier for sensitivity
+    // Add velocity based on wheel input
+    scrollVelocity += event.deltaY * 0.05; // adjust multiplier for sensitivity
 
-  if (!isAnimating) {
-    isAnimating = true;
-    animateScroll();
-  }
+    if (!isAnimating) {
+        isAnimating = true;
+        animateScroll();
+    }
 });
 
 function animateScroll() {
-  if (Math.abs(scrollVelocity) > 0.5) {
-    scrollWrapper.scrollTop += scrollVelocity; // move content
-    scrollVelocity *= 0.93; // friction: reduce velocity each frame
-    requestAnimationFrame(animateScroll);
-  } else {
-    scrollVelocity = 0;
-    isAnimating = false;
-  }
+    if (Math.abs(scrollVelocity) > 0.5) {
+        scrollWrapper.scrollTop += scrollVelocity; // move content
+        scrollVelocity *= 0.93; // friction: reduce velocity each frame
+        requestAnimationFrame(animateScroll);
+    } else {
+        scrollVelocity = 0;
+        isAnimating = false;
+    }
 };
 
 // ======================= Edit Task =======================
@@ -386,9 +386,12 @@ function handleTouch(e)
 function handleEdit(e)
 {
     const li = e.target.closest("li.sortable-item");
+    console.log(e.target);
 
-    if(!li) return;
-    if(e.target.classList.contains("check") || e.target.classList.contains("remove")) return;
+    if( e.target.classList.contains("check") || 
+        e.target.classList.contains("remove") || 
+        e.target.classList.contains("edit") || 
+        e.target.classList.contains("input-edit")) return;
 
     const textNode = li.childNodes[1];
     const oldText = textNode.textContent.trim();
@@ -445,3 +448,8 @@ function handleEdit(e)
 // window.addEventListener("resize", setVH);
 
 // doesn't work, maybe because innerHeight doesn't change while i still hold the finger and scroll, idk weird, ill use 120vh and call it fixed
+
+// const isMobile = (
+//     ('ontouchstart' in window || navigator.maxTouchPoints > 0) &&
+//     window.matchMedia('(max-width: 768px)').matches
+// );
