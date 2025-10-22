@@ -369,18 +369,23 @@ orderedList.addEventListener("dblclick", handleEdit);
 orderedList.addEventListener("touchstart", handleTouch);
 
 let lastTap = 0;
+let lastTappedLi = null;
 
 function handleTouch(e)
 {
+    const li = e.target.closest("li.sortable-item");
+    if (!li) return;
+
     const now = Date.now();
     const timeSince = now - lastTap;
-    if(timeSince < 300 && timeSince > 0)
+    if(li === lastTappedLi && timeSince < 300 && timeSince > 0)
     {
         e.preventDefault();
         handleEdit(e);
     }
 
     lastTap = now;
+    lastTappedLi = li;
 }
 
 function handleEdit(e)
