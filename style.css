@@ -211,13 +211,13 @@ body::before {
     padding: 10px 20px;
     padding-left: 50px;
     padding-right: 50px;
-    user-select: none;
     color: var(--text-color-second);
     overflow-wrap: break-word;
 
     transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 
     touch-action: manipulation;
+    user-select: text;
 }
 
 /* ======================= List items check button + remove button ======================= */

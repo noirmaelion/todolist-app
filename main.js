@@ -374,7 +374,12 @@ let lastTappedLi = null;
 function handleTouch(e)
 {
     const li = e.target.closest("li.sortable-item");
+
     if (!li) return;
+    if( e.target.classList.contains("check") || 
+        e.target.classList.contains("remove") || 
+        e.target.classList.contains("edit") || 
+        e.target.classList.contains("input-edit")) return;
 
     const now = Date.now();
     const timeSince = now - lastTap;
