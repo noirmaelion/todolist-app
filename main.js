@@ -368,8 +368,7 @@ orderedList.addEventListener("dblclick", handleEdit);
 orderedList.addEventListener("touchstart", handleTouch);
 
 let lastTap = 0;
-let lastTappedLi = null;
-let lastTappedIndex = -1;
+let lastRect = null;
 
 function handleTouch(e)
 {
@@ -382,29 +381,35 @@ function handleTouch(e)
 
     const now = Date.now();
     const timeSince = now - lastTap;
-    const index = Array.prototype.indexOf.call(orderedList.children, li);
+    const rect = li.getBoundingClientRect();
+    const touch = e.touches[0] || e.changedTouches[0];  // fallback
+    const x = touch.clientX;
+    const y = touch.clientY;
 
-    if(index === lastTappedIndex && li === lastTappedLi && timeSince < 300 && timeSince > 0)
+    const insideLast = 
+        lastRect &&
+        x >= lastRect.left &&
+        x <= lastRect.right &&
+        y >= lastRect.top &&
+        y <= lastRect.bottom;
+
+    if(insideLast && timeSince < 300 && timeSince > 0)
     {
         e.preventDefault();
         handleEdit(e);
+
+        lastTap = 0;
+        lastRect = null;
     }
 
     lastTap = now;
-    lastTappedLi = li;
-    lastTappedIndex = index;
+    lastRect = rect;
 }
 
 function handleEdit(e)
 {
 
     const li = e.target.closest("li.sortable-item");
-    const parentLi = li.parentElement;
-
-    console.log(li);
-    console.log(parentLi);
-    console.log(Array.prototype.indexOf.call(parentLi.children, li));
-
 
     if (!li) return;
     if( e.target.classList.contains("check") || 
