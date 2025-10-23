@@ -369,10 +369,13 @@ orderedList.addEventListener("touchstart", handleTouch);
 
 let lastTap = 0;
 let lastTappedLi = null;
+let lastTappedIndex = null;
 
 function handleTouch(e)
 {
     const li = e.target.closest("li.sortable-item");
+    const parentLi = li.parentElement;
+    const index = Array.prototype.indexOf.call(parentLi.children, li);
 
     if (!li) return;
     if( e.target.classList.contains("check") || 
@@ -382,7 +385,7 @@ function handleTouch(e)
 
     const now = Date.now();
     const timeSince = now - lastTap;
-    if(li === lastTappedLi && timeSince < 300 && timeSince > 0)
+    if(index === lastTappedIndex && li === lastTappedLi && timeSince < 300 && timeSince > 0)
     {
         e.preventDefault();
         handleEdit(e);
@@ -390,11 +393,18 @@ function handleTouch(e)
 
     lastTap = now;
     lastTappedLi = li;
+    lastTappedIndex = Array.prototype.indexOf.call(parentLi.children, li);
 }
 
 function handleEdit(e)
 {
     const li = e.target.closest("li.sortable-item");
+    const parentLi = li.parentElement;
+
+    console.log(li);
+    console.log(parentLi);
+    console.log(Array.prototype.indexOf.call(parentLi.children, li));
+
 
     if (!li) return;
     if( e.target.classList.contains("check") || 
