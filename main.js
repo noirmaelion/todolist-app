@@ -386,6 +386,10 @@ function handleTouch(e)
     const x = touch.clientX;
     const y = touch.clientY;
 
+    // debug
+    debug(li, y);
+    // debug
+
     const insideLast = 
         lastRect &&
         x >= lastRect.left &&
@@ -406,6 +410,16 @@ function handleTouch(e)
     lastRect = rect;
 }
 
+// debug
+function debug(li, y)
+{
+    let debugEl = document.getElementById("debug");
+    debugEl.innerText = `Index: ${Array.prototype.indexOf.call(orderedList.children, li)}
+                        LastRectTop: ${lastRect}
+                        Y Postition: ${y}`;
+}
+// debug
+
 function handleEdit(e)
 {
 
@@ -416,6 +430,12 @@ function handleEdit(e)
         e.target.classList.contains("remove") || 
         e.target.classList.contains("edit") || 
         e.target.classList.contains("input-edit")) return;
+
+    // debug
+    debug(li);
+    console.log(li.getBoundingClientRect().top);
+    console.log(e.clientY)
+    // debug
 
     const textNode = li.childNodes[1];
     const oldText = textNode.textContent.trim();
