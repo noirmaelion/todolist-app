@@ -415,7 +415,7 @@ function debug(li, y)
 {
     let debugEl = document.getElementById("debug");
     debugEl.innerText = `Index: ${Array.prototype.indexOf.call(orderedList.children, li)}
-                        LastRectTop: ${lastRect}
+                        LastRectTop: ${lastRect.top()}
                         Y Postition: ${y}`;
 }
 // debug
