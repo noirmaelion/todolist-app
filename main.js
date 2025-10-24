@@ -386,12 +386,12 @@ function handleTouch(e)
     const x = touch.clientX;
     const y = touch.clientY;
 
-    const insideLast = 
+    const insideLast = !!(
         lastRect &&
         x >= lastRect.left &&
         x <= lastRect.right &&
         y >= lastRect.top &&
-        y <= lastRect.bottom;
+        y <= lastRect.bottom);
 
     if(insideLast && timeSince < 300 && timeSince > 0)
     {
