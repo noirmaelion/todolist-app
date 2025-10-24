@@ -386,10 +386,6 @@ function handleTouch(e)
     const x = touch.clientX;
     const y = touch.clientY;
 
-    // debug
-    debug(li, y);
-    // debug
-
     const insideLast = 
         lastRect &&
         x >= lastRect.left &&
@@ -408,6 +404,10 @@ function handleTouch(e)
 
     lastTap = now;
     lastRect = rect;
+
+    // debug
+    debug(li, y);
+    // debug
 }
 
 // debug
