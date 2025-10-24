@@ -406,17 +406,18 @@ function handleTouch(e)
     lastRect = rect;
 
     // debug
-    debug(li, y);
+    debug(li, y, insideLast);
     // debug
 }
 
 // debug
-function debug(li, y)
+function debug(li, y, insideLast)
 {
     let debugEl = document.getElementById("debug");
     debugEl.innerText = `Index: ${Array.prototype.indexOf.call(orderedList.children, li)}
-                        LastRectTop: ${lastRect.top()}
-                        Y Postition: ${y}`;
+                        LastRectTop: ${lastRect.top}
+                        Y Postition: ${y}
+                        InsideLast: ${insideLast}`;
 }
 // debug
 
@@ -432,9 +433,9 @@ function handleEdit(e)
         e.target.classList.contains("input-edit")) return;
 
     // debug
-    debug(li);
-    console.log(li.getBoundingClientRect().top);
-    console.log(e.clientY)
+    // debug(li);
+    // console.log(li.getBoundingClientRect().top);
+    // console.log(e.clientY)
     // debug
 
     const textNode = li.childNodes[1];
