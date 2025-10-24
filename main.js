@@ -393,7 +393,9 @@ function handleTouch(e)
         y >= lastRect.top &&
         y <= lastRect.bottom);
 
-    if(insideLast && timeSince < 300 && timeSince > 0)
+    // !!(lastRect && x >= lastRect.left && x <= lastRect.right && y >= lastRect.top && y <= lastRect.bottom) ?
+
+    if(insideLast == true && timeSince < 300 && timeSince > 0)
     {
         e.preventDefault();
         handleEdit(e);
