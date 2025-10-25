@@ -413,24 +413,9 @@ function handleTouch(e)
     lastTap = now;
     lastRect = rect;
 
-    // debug
-    debug(li, y, insideLast);
-    // debug
-
     // to much code cus i had to find new ways for it work, because i thought something was wrong, turns out dbclick was triggering on mobile
     // and it was working like ass so i was trying to fix it
 }
-
-// debug
-function debug(li, y, insideLast)
-{
-    let debugEl = document.getElementById("debug");
-    debugEl.innerText = `Index: ${Array.prototype.indexOf.call(orderedList.children, li)}
-                        LastRectTop: ${lastRect.top}
-                        Y Postition: ${y}
-                        InsideLast: ${insideLast}`;
-}
-// debug
 
 function handleEdit(e)
 {
@@ -442,12 +427,6 @@ function handleEdit(e)
         e.target.classList.contains("remove") || 
         e.target.classList.contains("edit") || 
         e.target.classList.contains("input-edit")) return;
-
-    // debug
-    // debug(li);
-    // console.log(li.getBoundingClientRect().top);
-    // console.log(e.clientY)
-    // debug
 
     const textNode = li.childNodes[1];
     const oldText = textNode.textContent.trim();
@@ -481,16 +460,23 @@ function handleEdit(e)
 
     input.addEventListener("blur", function(e)
     {
-        setTimeout(() => {
-            if(document.activeElement === input) return;
+        // setTimeout(() => {
+        //     if(document.activeElement === input) return;
 
-            const newText = input.value.trim() || oldText;
-            const newTask = document.createTextNode(newText);
-            li.replaceChild(newTask, input);
-            li.classList.remove("edit");
+        //     const newText = input.value.trim() || oldText;
+        //     const newTask = document.createTextNode(newText);
+        //     li.replaceChild(newTask, input);
+        //     li.classList.remove("edit");
 
-            saveTasks();
-        }, 200);
+        //     saveTasks();
+        // }, 200);
+
+        const newText = input.value.trim() || oldText;
+        const newTask = document.createTextNode(newText);
+        li.replaceChild(newTask, input);
+        li.classList.remove("edit");
+
+        saveTasks();
     })
 }
 
