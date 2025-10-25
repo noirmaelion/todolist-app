@@ -414,7 +414,7 @@ function handleTouch(e)
 
 function handleEdit(e)
 {
-
+    e.preventDefault();
     const li = e.target.closest("li.sortable-item");
 
     if (!li) return;
@@ -435,10 +435,10 @@ function handleEdit(e)
     li.classList.add("edit");
     input.focus();
 
-    if(!isTouchDevice)
-    {
-        input.select();
-    }
+    // if(!isTouchDevice)
+    // {
+    //     input.select();
+    // }
 
     input.addEventListener("keydown", function(e)
     {

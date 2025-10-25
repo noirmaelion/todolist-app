@@ -20,23 +20,23 @@ body
 
 /* gradient overlay */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  /* extend gradient to prevent white gap when mobile browser UI hides */
-  height: 120vh;
-  /* height: calc(var(--vh, 1vh) * 100); */
-  background: var(--background-gradient, none);
-  z-index: -1;
-  opacity: var(--gradient-opacity);
-  pointer-events: none;
+    content: "";
+    position: fixed;
+    inset: 0;
+    /* extend gradient to prevent white gap when mobile browser UI hides */
+    height: 120vh;
+    /* height: calc(var(--vh, 1vh) * 100); */
+    background: var(--background-gradient, none);
+    z-index: -1;
+    opacity: var(--gradient-opacity);
+    pointer-events: none;
 
-  transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 
-  /* white space when scrolling fix, forces gpu to prerender */
-  transform: translate3d(0, 0, 0);
-  will-change: opacity, transform;
-  contain: paint;
+    /* white space when scrolling fix, forces gpu to prerender */
+    transform: translate3d(0, 0, 0);
+    will-change: opacity, transform;
+    contain: paint;
 }
 
 /* ======================= Header ======================= */
@@ -217,7 +217,7 @@ body::before {
     transition: transform 0.2s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 
     touch-action: manipulation;
-    user-select: text;
+    user-select: none;
 }
 
 /* ======================= List items check button + remove button ======================= */
