@@ -395,14 +395,14 @@ function handleTouch(e)
 
     // !!(lastRect && x >= lastRect.left && x <= lastRect.right && y >= lastRect.top && y <= lastRect.bottom) ?
 
-    if(insideLast == true && timeSince < 300 && timeSince > 0)
-    {
-        e.preventDefault();
-        handleEdit(e);
+    // if(insideLast == true && timeSince < 300 && timeSince > 0)
+    // {
+    //     e.preventDefault();
+    //     handleEdit(e);
 
-        lastTap = 0;
-        lastRect = null;
-    }
+    //     lastTap = 0;
+    //     lastRect = null;
+    // }
 
     lastTap = now;
     lastRect = rect;
