@@ -364,8 +364,16 @@ function animateScroll() {
 
 // ======================= Edit Task =======================
 
-orderedList.addEventListener("dblclick", handleEdit);
-orderedList.addEventListener("touchstart", handleTouch);
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+if(isTouchDevice)
+{
+    orderedList.addEventListener("touchstart", handleTouch);
+}
+else
+{
+    orderedList.addEventListener("dblclick", handleEdit);
+}
 
 let lastTap = 0;
 let lastRect = null;
@@ -393,16 +401,14 @@ function handleTouch(e)
         y >= lastRect.top &&
         y <= lastRect.bottom);
 
-    // !!(lastRect && x >= lastRect.left && x <= lastRect.right && y >= lastRect.top && y <= lastRect.bottom) ?
+    if(insideLast && timeSince < 300 && timeSince > 0)
+    {
+        e.preventDefault();
+        handleEdit(e);
 
-    // if(insideLast == true && timeSince < 300 && timeSince > 0)
-    // {
-    //     e.preventDefault();
-    //     handleEdit(e);
-
-    //     lastTap = 0;
-    //     lastRect = null;
-    // }
+        lastTap = 0;
+        lastRect = null;
+    }
 
     lastTap = now;
     lastRect = rect;
@@ -410,6 +416,9 @@ function handleTouch(e)
     // debug
     debug(li, y, insideLast);
     // debug
+
+    // to much code cus i had to find new ways for it work, because i thought something was wrong, turns out dbclick was triggering on mobile
+    // and it was working like ass so i was trying to fix it
 }
 
 // debug
@@ -452,7 +461,7 @@ function handleEdit(e)
     li.classList.add("edit");
     input.focus();
 
-    if(!(`ontouchstart` in window || navigator.maxTouchPoints > 0))
+    if(!isTouchDevice)
     {
         input.select();
     }
