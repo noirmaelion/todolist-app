@@ -13,6 +13,7 @@ document.addEventListener("touchstart", () => {}, true);
 
 // setVH();
 // fix gradient white space on mobile scroll
+// doesnt work, so idk. Gradient is fucked up on mobile
 
 // ======================= Add Task Logic =======================
 
@@ -52,9 +53,6 @@ function addTask(event)
         li.appendChild(check);
         li.appendChild(text);
         li.appendChild(remove);
-
-        // prev version had huge vulnurability 
-        // li.innerHTML = '<span class="check"></span>' + inputText.value + '<span class="remove">X</span>';
 
         orderedList.appendChild(li);
         inputText.value = "";
@@ -277,9 +275,6 @@ function hasGradient(className)
     return gradients.some((g) => g && g.trim() !== "none" & g.trim() !== "");
 }
 
-// this function is not necessary, we can use body.className = className instead
-// its purpose is to always have darkmode class as a fallback
-// to not define preset-dark version for every single one, even if its the same, to keep css somewhat clean
 function applyThemeHelper(preset, mode)
 {
     const body = document.body;
@@ -313,7 +308,7 @@ document.addEventListener("click", function(event)
        !customizationBtn.contains(event.target) &&
        !event.target.closest("#light-dark, .light-dark"))
     {
-        if(customizationMenu.classList.contains("active")) // because i didnt added hidden class by default, when we click it applyes hidden class and animation starts, so it flicks for a second. Could be removed if i explicitly add hidden class in html, but idk whats better yet. NOpe update it wont work, because animation will start on load i think
+        if(customizationMenu.classList.contains("active"))
         {
             customizationMenu.classList.remove("active");
             customizationMenu.classList.add("hidden");
@@ -336,7 +331,7 @@ scrollWrapper.addEventListener("click", function(event)
 
 // ======================= Custom scroll animation =======================
 
-let scrollVelocity = 0; // how fast we scroll
+let scrollVelocity = 0;
 let isAnimating = false;
 
 customizationMenu.addEventListener("wheel", (event) => {
@@ -460,17 +455,6 @@ function handleEdit(e)
 
     input.addEventListener("blur", function(e)
     {
-        // setTimeout(() => {
-        //     if(document.activeElement === input) return;
-
-        //     const newText = input.value.trim() || oldText;
-        //     const newTask = document.createTextNode(newText);
-        //     li.replaceChild(newTask, input);
-        //     li.classList.remove("edit");
-
-        //     saveTasks();
-        // }, 200);
-
         const newText = input.value.trim() || oldText;
         const newTask = document.createTextNode(newText);
         li.replaceChild(newTask, input);
