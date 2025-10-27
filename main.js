@@ -176,7 +176,7 @@ function dragScroll(e)
     const rect = orderedList.getBoundingClientRect();
     const y = e.clientY;
     const nearTop = y < 50 && rect.top <= 200;
-    const nearBottom = y > document.documentElement.clientHeight - 50;
+    const nearBottom = y > window.innerHeight - 50;
 
     if(nearTop) window.scrollBy(0, -10);
     if(nearBottom) window.scrollBy(0, 10);
@@ -220,14 +220,7 @@ panel.addEventListener("click", function(event)
             customizationMenu.classList.remove("hidden");
             customizationMenu.classList.add("active");
         }
-        // return;
-
-        // test
-            let test = document.getElementById("test");
-            let orderedListRect = orderedList.getBoundingClientRect();
-            let orderedListTop = orderedListRect.top;
-            test.textContent = `${orderedListTop}`;
-        // test
+        return;
     }
 });
 
@@ -453,10 +446,14 @@ function handleEdit(e)
     const textNode = li.childNodes[1];
     const oldText = textNode.textContent.trim();
 
-    const input = document.createElement("input");
+    const input = document.createElement("textarea");
     input.type = "text";
     input.value = oldText;
     input.className = "input-edit";
+
+    const rect = li.getBoundingClientRect();
+    const styles = window.getComputedStyle(li);
+    input.style.minHeight = (rect.height) + "px";
 
     li.replaceChild(input, textNode);
     li.classList.add("edit");

@@ -302,6 +302,7 @@ body::before {
     font: inherit;
     color: inherit;
     width: 100%;
+    resize: none;
     margin: 0;
     padding: 0;
 
@@ -309,7 +310,15 @@ body::before {
     -webkit-appearance: none;
     -moz-appearance: none;
 
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+
     /* border: 3px inset var(--primary-color); */
+}
+
+.input-edit::-webkit-scrollbar
+{
+    display: none;
 }
 
 /* ======================= Button panel ======================= */
