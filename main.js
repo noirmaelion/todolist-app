@@ -89,7 +89,7 @@ function displayStoredTasks()
     orderedList.innerHTML = localStorage.getItem("tasks");
 }
 
-// ======================= Drag And Drop Logic =======================
+// ======================= Drag And Drop Logic + Drag Scroll Logic =======================
 
 document.querySelectorAll('.sortable-item').forEach(item => item.classList.remove('over'));
 document.querySelectorAll('.sortable-item').forEach(item => item.classList.remove('dragging'));
@@ -106,21 +106,17 @@ list.addEventListener("dragstart", (e) =>
         return;
     }
 
+    dragScroll(e);
+
     draggingItem = e.target;
     e.target.classList.add('dragging');
-});
-
-list.addEventListener('dragend', (e) =>
-{
-    e.target.classList.remove('dragging');
-    draggingItem = null;
-
-    document.querySelectorAll(".sortable-item").forEach(item => item.classList.remove('over'));
 });
 
 list.addEventListener('dragover', (e) => 
 {
     e.preventDefault();
+
+    dragScroll(e);
 
     const draggingOverItem = getDragAfterElement(list, e.clientY);
 
@@ -161,6 +157,33 @@ function getDragAfterElement(container, y)
     }, {offset: Number.NEGATIVE_INFINITY, element: undefined}).element;
 };
 
+list.addEventListener('dragend', (e) =>
+{
+    e.target.classList.remove('dragging');
+    draggingItem = null;
+
+    document.querySelectorAll(".sortable-item").forEach(item => item.classList.remove('over'));
+
+    cancelAnimationFrame(frameAnimationId);
+});
+
+let frameAnimationId = null;
+
+function dragScroll(e)
+{
+    cancelAnimationFrame(frameAnimationId);
+
+    const rect = orderedList.getBoundingClientRect();
+    const y = e.clientY;
+    const nearTop = y < 50 && rect.top <= 200;
+    const nearBottom = y > document.documentElement.clientHeight - 50;
+
+    if(nearTop) window.scrollBy(0, -10);
+    if(nearBottom) window.scrollBy(0, 10);
+
+    frameAnimationId = requestAnimationFrame(() => dragScroll(e));
+}
+
 // ======================= Panel buttons functionallity =======================
 
 panel.addEventListener("click", function(event)
@@ -197,7 +220,14 @@ panel.addEventListener("click", function(event)
             customizationMenu.classList.remove("hidden");
             customizationMenu.classList.add("active");
         }
-        return;
+        // return;
+
+        // test
+            let test = document.getElementById("test");
+            let orderedListRect = orderedList.getBoundingClientRect();
+            let orderedListTop = orderedListRect.top;
+            test.textContent = `${orderedListTop}`;
+        // test
     }
 });
 
@@ -407,9 +437,6 @@ function handleTouch(e)
 
     lastTap = now;
     lastRect = rect;
-
-    // to much code cus i had to find new ways for it work, because i thought something was wrong, turns out dbclick was triggering on mobile
-    // and it was working like ass so i was trying to fix it
 }
 
 function handleEdit(e)
@@ -434,11 +461,6 @@ function handleEdit(e)
     li.replaceChild(input, textNode);
     li.classList.add("edit");
     input.focus();
-
-    // if(!isTouchDevice)
-    // {
-    //     input.select();
-    // }
 
     input.addEventListener("keydown", function(e)
     {
