@@ -450,10 +450,18 @@ function handleEdit(e)
     input.type = "text";
     input.value = oldText;
     input.className = "input-edit";
+    input.style.justifyContent = "center";
 
     const rect = li.getBoundingClientRect();
-    const styles = window.getComputedStyle(li);
-    input.style.minHeight = (rect.height) + "px";
+    const baseHeight = rect.height - 20;
+    input.style.height = (baseHeight) + "px";
+
+    input.addEventListener("input", function(e)
+    {
+        input.style.height = "auto";
+        // const newHeight = Math.max(input.scrollHeight, baseHeight);
+        input.style.height = `${input.scrollHeight}px`
+    });
 
     li.replaceChild(input, textNode);
     li.classList.add("edit");
@@ -463,24 +471,27 @@ function handleEdit(e)
     {
         if(e.key === "Enter")
         {
-            const newText = input.value.trim() || oldText;
-            const newTask = document.createTextNode(newText);
-            li.replaceChild(newTask, input);
-            li.classList.remove("edit");
-
-            saveTasks();
+            e.preventDefault();
+            commitChange();
         }
     });
 
-    input.addEventListener("blur", function(e)
+    input.addEventListener("blur", commitChange)
+
+    let commited = false;
+
+    function commitChange()
     {
+        if(commited) return;
+        commited = true;
+
         const newText = input.value.trim() || oldText;
         const newTask = document.createTextNode(newText);
         li.replaceChild(newTask, input);
         li.classList.remove("edit");
 
         saveTasks();
-    })
+    }
 }
 
 // ======================= FIX gradient white gap when scrolling on mobile, when browser UI hides =======================
