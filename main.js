@@ -3,6 +3,9 @@ const addButton = document.getElementById("AddButton");
 const orderedList = document.getElementById("orderedList");
 const panel = document.getElementById("panel");
 
+let undoStack = [];
+let redoStack = [];
+
 // ======================= On Load =======================
 
 displayStoredTasks();
@@ -15,7 +18,7 @@ document.addEventListener("touchstart", () => {}, true);
 // fix gradient white space on mobile scroll
 // doesnt work, so idk. Gradient is fucked up on mobile
 
-// ======================= Add Task Logic =======================
+// ======================= Add Task Logic + Undo/Redo logic =======================
 
 addButton.addEventListener("click", addTask);
 inputText.addEventListener("keydown", addTask);
@@ -61,6 +64,34 @@ function addTask(event)
     }
 };
 
+document.addEventListener("keydown", function(e)
+{
+    if(e.ctrlKey && e.key === "z")
+    {
+        e.preventDefault();
+        if(undoStack.length > 1)
+        {
+            const currentState = undoStack.pop();
+            redoStack.push(currentState);
+            const previousState = undoStack[undoStack.length - 1];
+            orderedList.innerHTML = previousState;
+            localStorage.setItem("tasks", previousState)
+        }
+    }
+
+    if(e.ctrlKey && e.key === "y")
+    {
+        e.preventDefault();
+        if(redoStack.length > 0)
+        {
+            const nextState = redoStack.pop();
+            undoStack.push(nextState);
+            orderedList.innerHTML = nextState;
+            localStorage.setItem("tasks", nextState)
+        }
+    }
+});
+
 // ======================= Check And Remove Logic =======================
 
 orderedList.addEventListener("click", function(event)
@@ -77,16 +108,29 @@ orderedList.addEventListener("click", function(event)
     }
 });
 
-// ======================= Local Storage for Tasks =======================
+// ======================= Local Storage for Tasks + Undo/Redo additional logic =======================
 
 function saveTasks()
 {
-    localStorage.setItem("tasks", orderedList.innerHTML);
+    if(undoStack[undoStack.length - 1] !== orderedList.innerHTML)
+    {
+        localStorage.setItem("tasks", orderedList.innerHTML);
+
+        undoStack.push(orderedList.innerHTML);
+        if(undoStack.length > 50) undoStack.shift();
+        redoStack = [];
+    }
 };
 
 function displayStoredTasks()
 {
-    orderedList.innerHTML = localStorage.getItem("tasks");
+    const stored = localStorage.getItem("tasks");
+    if(stored)
+    {
+        orderedList.innerHTML = localStorage.getItem("tasks");
+        undoStack.push(stored)
+        redoStack = [];
+    }
 }
 
 // ======================= Drag And Drop Logic + Drag Scroll Logic =======================
@@ -126,12 +170,10 @@ list.addEventListener('dragover', (e) =>
     {
         draggingOverItem.classList.add('over');
         list.insertBefore(draggingItem, draggingOverItem);
-        saveTasks();
     }
     else
     {
         list.appendChild(draggingItem);
-        saveTasks();
     }
 
 });
@@ -165,6 +207,7 @@ list.addEventListener('dragend', (e) =>
     document.querySelectorAll(".sortable-item").forEach(item => item.classList.remove('over'));
 
     cancelAnimationFrame(frameAnimationId);
+    saveTasks();
 });
 
 let frameAnimationId = null;
@@ -190,8 +233,8 @@ panel.addEventListener("click", function(event)
 {
     if(event.target.closest('#clean-all, .clean-all'))
     {
-        localStorage.removeItem("tasks");
-        displayStoredTasks();
+        orderedList.innerHTML = "";
+        saveTasks();
         return;
     }
     
