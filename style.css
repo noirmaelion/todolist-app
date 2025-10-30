@@ -155,6 +155,7 @@ body::before {
     background: transparent;
     padding: 0px 20px;
     font-size: 1.2em;
+    color: var(--input-text-color);
 }
 
 #input input::placeholder
@@ -578,7 +579,7 @@ svg.customization-icon
 
 .customization-presets.selectedPreset
 {
-    border: 3px solid var(--text-color-second);
+    border: 3px solid var(--selected-preset-border);
     border-radius: 15px;
     box-shadow: 0px -3px 20px var(--selected-preset-shadow);
 }
@@ -920,26 +921,28 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --background-color: #fafaff;
 
     --primary-gradient: none;
-    --primary-color: #cfcfcf;
+    --primary-color: #e0e4f1;
 
     --header-gradient: none;
-    --header-color: #aaaaaa;
+    --header-color: #e0e4f1;
 
     --button-color: #da2c38;
     --input-color: white;
     --input-placeholder-color: #202020;
+    --input-text-color: white;
 
-    --checked-color: #8bb492;
+    --checked-color: #95cab0;
 
     --button-color-hover: #df3843;
     --dragging-color: #d3d3d3;
-    --dragging-checked-color: #97c09e;
+    --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
     --text-color-second: #575757;
-    --text-color-header: #ffffff;
+    --text-color-header: #575757;
 
-    --shadow-color: #888888;
+    --shadow-color: #828daf;
+    --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
     --gradient-opacity: 0;
@@ -948,35 +951,39 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 .darkmode
 {
     --background-gradient: none;
-    --background-color: #222222;
+    --background-color: #30303b;
 
     --primary-gradient: none;
-    --primary-color: #3f3f3f;
+    --primary-color: #3b3b4b;
 
     --header-gradient: none;
-    --header-color: #363636;
+    --header-color: #3b3b4b;
 
-    --button-color: #da2c38;
-    --input-color: #c7c7c7;
-    --input-placeholder-color: #1d1d1d;
+    --button-color: #df3843;
+    --input-color: #2e2e3a;
+    --input-placeholder-color: #b4b4b4;
+    --input-text-color: #b4b4b4;
 
-    --checked-color: #769c7d;
+    --checked-color: #678576;
 
     --button-color-hover: #df3843;
     --dragging-color: #5a5a5a;
-    --dragging-checked-color: #92b898;
+    --dragging-checked-color: #6c927e;
 
-    --text-color-first: #3b3b3b;
+    --text-color-first: #2e2e2e;
     --text-color-second: #b4b4b4;
     --text-color-header: #b4b4b4;
 
     --shadow-color: #252525;
-    --selected-preset-shadow: white;
+    --selected-preset-border: #8a8a8a;
+    --selected-preset-shadow: #8a8a8a;
 
     --gradient-opacity: 0;
 }
 
 /* ======================= Themes ======================= */
+
+/*                                PRESET 1                                */
 
 .preset1-light
 {
@@ -984,26 +991,28 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --background-color: #fafaff;
 
     --primary-gradient: none;
-    --primary-color: #cfcfcf;
+    --primary-color: #e0e4f1;
 
     --header-gradient: none;
-    --header-color: #aaaaaa;
+    --header-color: #e0e4f1;
 
     --button-color: #da2c38;
     --input-color: white;
     --input-placeholder-color: #202020;
+    --input-text-color: white;
 
-    --checked-color: #8bb492;
+    --checked-color: #95cab0;
 
     --button-color-hover: #df3843;
     --dragging-color: #d3d3d3;
-    --dragging-checked-color: #97c09e;
+    --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
     --text-color-second: #575757;
-    --text-color-header: #ffffff;
+    --text-color-header: #575757;
 
-    --shadow-color: #888888;
+    --shadow-color: #828daf;
+    --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
     --gradient-opacity: 0;
@@ -1012,33 +1021,39 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 .preset1-dark
 {
     --background-gradient: none;
-    --background-color: #222222;
+    --background-color: #30303b;
 
     --primary-gradient: none;
-    --primary-color: #3f3f3f;
+    --primary-color: #3b3b4b;
 
     --header-gradient: none;
-    --header-color: #363636;
+    --header-color: #3b3b4b;
 
-    --button-color: #da2c38;
-    --input-color: #c7c7c7;
-    --input-placeholder-color: #1d1d1d;
+    --button-color: #df3843;
+    --input-color: #2e2e3a;
+    --input-placeholder-color: #b4b4b4;
+    --input-text-color: #b4b4b4;
 
-    --checked-color: #769c7d;
+    --checked-color: #678576;
 
     --button-color-hover: #df3843;
     --dragging-color: #5a5a5a;
-    --dragging-checked-color: #92b898;
+    --dragging-checked-color: #6c927e;
 
-    --text-color-first: #3b3b3b;
+    --text-color-first: #2e2e2e;
     --text-color-second: #b4b4b4;
     --text-color-header: #b4b4b4;
 
     --shadow-color: #252525;
-    --selected-preset-shadow: white;
+    --selected-preset-border: #8a8a8a;
+    --selected-preset-shadow: #8a8a8a;
 
     --gradient-opacity: 0;
 }
+
+/*                                PRESET 2                                */
+
+/* add vars input text color and selected preset border */
 
 .preset2-light
 {
@@ -1054,6 +1069,7 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --button-color: #f54a4a;
     --input-color: white;
     --input-placeholder-color: #202020;
+    --input-text-color: black;
 
     --checked-color: #98bd87;
 
@@ -1101,6 +1117,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --gradient-opacity: 1;
 }
 
+/*                                PRESET 3                                */
+
 .preset3-light
 {
     --background-gradient: linear-gradient(30deg, #FFD6FF, #E7C6FF, #C8B6FF, #B8C0FF, #BBD0FF);
@@ -1131,6 +1149,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 
     --gradient-opacity: 1;
 }
+
+/*                                PRESET 4                                */
 
 .preset4-light
 {
@@ -1163,6 +1183,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --gradient-opacity: 1;
 }
 
+/*                                PRESET 5                                */
+
 .preset5-light
 {
     --background-gradient: linear-gradient(30deg, #FFB3C1 -10%, #FF8FA3, #FF758F, #FF4D6D, #C9184A 120%);
@@ -1193,6 +1215,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 
     --gradient-opacity: 1;
 }
+
+/*                                PRESET 6                                */
 
 .preset6-light
 {
@@ -1225,6 +1249,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --gradient-opacity: 1;
 }
 
+/*                                PRESET 7                                */
+
 .preset7-light
 {
     --background-gradient: linear-gradient(30deg, #EDE0D4 -10%, #E6CCB2 10%, #DDB892, #B08968, #9C6644 100%);
@@ -1255,6 +1281,8 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 
     --gradient-opacity: 1;
 }
+
+/*                                PRESET 8                                */
 
 .preset8-light
 {
