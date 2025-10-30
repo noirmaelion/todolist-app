@@ -476,7 +476,7 @@ else
 
 let lastTap = 0;
 let lastRect = null;
-let olLastPosition = null;
+let olLastPosition = Number.NEGATIVE_INFINITY;
 
 function handleTouch(e)
 {
