@@ -943,9 +943,6 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --selected-preset-shadow: rgb(65, 65, 65);
 
     --gradient-opacity: 0;
-
-
-    --vh: 1vh;
 }
 
 .darkmode

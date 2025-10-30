@@ -86,7 +86,7 @@ document.addEventListener("keydown", function(e)
     }
 });
 
-header.addEventListener("touch", function(e)
+header.addEventListener("touchstart", function(e)
 {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX
