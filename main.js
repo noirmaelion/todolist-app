@@ -89,7 +89,8 @@ document.addEventListener("keydown", function(e)
 header.addEventListener("touchstart", function(e)
 {
     const rect = e.target.getBoundingClientRect();
-    const x = e.clientX
+    const touch = e.touches[0] || e.changedTouches[0];
+    const x = touch.clientX;
     let leftSide = x < (rect.left + 100);
     let rightSide = x > (rect.right - 100);
 
@@ -110,7 +111,7 @@ header.addEventListener("touchstart", function(e)
             redo();
         }
     }
-})
+});
 
 function undo()
 {
