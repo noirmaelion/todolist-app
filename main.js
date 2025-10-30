@@ -2,6 +2,7 @@ const inputText = document.getElementById("InputText");
 const addButton = document.getElementById("AddButton");
 const orderedList = document.getElementById("orderedList");
 const panel = document.getElementById("panel");
+const header = document.getElementById("header");
 
 let undoStack = [];
 let redoStack = [];
@@ -71,11 +72,7 @@ document.addEventListener("keydown", function(e)
         e.preventDefault();
         if(undoStack.length > 1)
         {
-            const currentState = undoStack.pop();
-            redoStack.push(currentState);
-            const previousState = undoStack[undoStack.length - 1];
-            orderedList.innerHTML = previousState;
-            localStorage.setItem("tasks", previousState)
+            undo();
         }
     }
 
@@ -84,13 +81,53 @@ document.addEventListener("keydown", function(e)
         e.preventDefault();
         if(redoStack.length > 0)
         {
-            const nextState = redoStack.pop();
-            undoStack.push(nextState);
-            orderedList.innerHTML = nextState;
-            localStorage.setItem("tasks", nextState)
+            redo();
         }
     }
 });
+
+header.addEventListener("touch", function(e)
+{
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX
+    let leftSide = x < (rect.left + 100);
+    let rightSide = x > (rect.right - 100);
+
+    if(leftSide)
+    {
+        e.preventDefault();
+        if(undoStack.length > 1)
+        {
+            undo();
+        }
+    }
+
+    if(rightSide)
+    {
+        e.preventDefault();
+        if(redoStack.length > 0)
+        {
+            redo();
+        }
+    }
+})
+
+function undo()
+{
+    const currentState = undoStack.pop();
+    redoStack.push(currentState);
+    const previousState = undoStack[undoStack.length - 1];
+    orderedList.innerHTML = previousState;
+    localStorage.setItem("tasks", previousState);
+}
+
+function redo()
+{
+    const nextState = redoStack.pop();
+    undoStack.push(nextState);
+    orderedList.innerHTML = nextState;
+    localStorage.setItem("tasks", nextState);
+}
 
 // ======================= Check And Remove Logic =======================
 
