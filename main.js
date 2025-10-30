@@ -502,8 +502,9 @@ function handleTouch(e)
         y <= lastRect.bottom);
 
     const olRect = orderedList.getBoundingClientRect(); // to prevent edit when scrolling
+    const notScrolling = Math.abs(olLastPosition - olRect.top) < 2;
 
-    if(insideLast && olLastPosition === olRect.top() && timeSince < 300 && timeSince > 0)
+    if(insideLast && notScrolling && timeSince < 300 && timeSince > 0)
     {
         e.preventDefault();
         handleEdit(e);
@@ -514,7 +515,7 @@ function handleTouch(e)
 
     lastTap = now;
     lastRect = rect;
-    olLastPosition = olRect.top();
+    olLastPosition = olRect.top;
 }
 
 function handleEdit(e)
