@@ -544,9 +544,8 @@ function handleEdit(e)
 
     input.addEventListener("input", function(e)
     {
-        input.style.height = "auto";
-        // const newHeight = Math.max(input.scrollHeight, baseHeight);
-        input.style.height = `${input.scrollHeight}px`
+        input.style.height = "0px";
+        input.style.height = `${input.scrollHeight}px`;
     });
 
     li.replaceChild(input, textNode);
