@@ -24,17 +24,21 @@ document.addEventListener("touchstart", () => {}, true);
 addButton.addEventListener("click", addTask);
 inputText.addEventListener("keydown", addTask);
 
+let timeoutId = null;
+
 function addTask(event)
 {
     if(inputText.value.trim() === "" && event.type === "click" || inputText.value.trim() === "" && event.key === "Enter")
     {
+        clearTimeout(timeoutId);
+
         inputText.value = "";
         inputText.setAttribute("placeholder", "Please Enter Something");
 
-        setTimeout(() =>
+        timeoutId = setTimeout(() =>
             {
                 inputText.setAttribute("placeholder", "Enter Task");
-            }, 3000);
+            }, 2000);
 
         return;
     }

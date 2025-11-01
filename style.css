@@ -76,11 +76,6 @@ body::before {
     pointer-events: none;
 }
 
-.darkmode #header
-{
-    color: var(--text-color-second);
-}
-
 /* ======================= To Do List app + Button panel container ======================= */
 
 #container
@@ -177,7 +172,7 @@ body::before {
     width: 150px;
     border-radius: 50px;
     background-color: var(--button-color);
-    color: white;
+    color: var(--button-text-color);
     font-size: 1.1em;
     cursor: pointer;
     transition: box-shadow 0.3s ease-out, transform 0.3s ease-out, background-color 0.3s ease;
@@ -767,9 +762,14 @@ svg.customization-icon
 
 @media (hover: hover) and (pointer: fine)
 {
+    #input button:hover
+    {
+        transform: scale(1.0);
+        background-color: var(--button-color-hover);
+    }
+
     #input button:active
     {
-        box-shadow: 0px 0px 5px var(--shadow-color);
         transform: scale(0.95);
     }
 
@@ -844,32 +844,32 @@ svg.customization-icon
 /*                                PRESET 1                                */
 
 #preset1 #color1{background-color: #fafaff;}
-#preset1 #color2{background-color: #cfcfcf;}
-#preset1 #color3{background-color: #aaaaaa;}
-#preset1 #color4{background-color: #888888;}
-#preset1 #color5{background-color: #5f5f5f;}
+#preset1 #color2{background-color: #e0e4f1;}
+#preset1 #color3{background-color: #d0d3df;}
+#preset1 #color4{background-color: #c0c3cc;}
+#preset1 #color5{background-color: #b0b2bb;}
 
 /* darkmode adaptation */
 
-body.darkmode #preset1 #color1{background-color: #5c5c5c;}
-body.darkmode #preset1 #color2{background-color: #4d4d4d;}
-body.darkmode #preset1 #color3{background-color: #3f3f3f;}
-body.darkmode #preset1 #color4{background-color: #353535;}
-body.darkmode #preset1 #color5{background-color: #2e2e2e;}
+body.darkmode #preset1 #color1{background-color: #3a3a49;}
+body.darkmode #preset1 #color2{background-color: #373746;}
+body.darkmode #preset1 #color3{background-color: #353542;}
+body.darkmode #preset1 #color4{background-color: #32323f;}
+body.darkmode #preset1 #color5{background-color: #30303b;}
 
 /*                                PRESET 2                                */
 
-#preset2 #color1{background-color: #FFCDB2;}
-#preset2 #color2{background-color: #FFB4A2;}
-#preset2 #color3{background-color: #E5989B;}
-#preset2 #color4{background-color: #B5838D;}
-#preset2 #color5{background-color: #6D6875;}
+#preset2 #color1{background-color: #d4f1ff;}
+#preset2 #color2{background-color: #def4ff;}
+#preset2 #color3{background-color: #e7f7ff;}
+#preset2 #color4{background-color: #f1faff;}
+#preset2 #color5{background-color: #fafdff;}
 
-body.darkmode #preset2 #color1{background-color: #A4161A;}
-body.darkmode #preset2 #color2{background-color: #860c10;}
-body.darkmode #preset2 #color3{background-color: #660708;}
-body.darkmode #preset2 #color4{background-color: #3d1c1c;}
-body.darkmode #preset2 #color5{background-color: #22272b;}
+body.darkmode #preset2 #color1{background-color: #436273;}
+body.darkmode #preset2 #color2{background-color: #355466;}
+body.darkmode #preset2 #color3{background-color: #264758;}
+body.darkmode #preset2 #color4{background-color: #173a4c;}
+body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 /*                                PRESET 3                                */
 
@@ -887,22 +887,6 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 #preset4 #color4{background-color: #5A189A;}
 #preset4 #color5{background-color: #3C096C;}
 
-/*                                PRESET 5                                */
-
-#preset5 #color1{background-color: #F2E9E4;}
-#preset5 #color2{background-color: #C9ADA7;}
-#preset5 #color3{background-color: #9A8C98;}
-#preset5 #color4{background-color: #4A4E69;}
-#preset5 #color5{background-color: #22223B;}
-
-/*                                PRESET 6                                */
-
-#preset6 #color1{background-color: #CAD2C5;}
-#preset6 #color2{background-color: #84A98C;}
-#preset6 #color3{background-color: #52796F;}
-#preset6 #color4{background-color: #354F52;}
-#preset6 #color5{background-color: #2F3E46;}
-
 /* ======================= Fallback variables ======================= */
 
 :root
@@ -917,14 +901,16 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --header-color: #e0e4f1;
 
     --button-color: #da2c38;
+    --button-color-hover: #da2c38;
+    --button-text-color: #ffffff;
+
     --input-color: white;
     --input-placeholder-color: #202020;
     --input-text-color: #202020;
 
     --checked-color: #95cab0;
 
-    --button-color-hover: #df3843;
-    --dragging-color: #d3d3d3;
+    --dragging-color: #e6eaf8;
     --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
@@ -950,13 +936,15 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --header-color: #3b3b4b;
 
     --button-color: #df3843;
+    --button-color-hover: #df3843;
+    --button-text-color: #ffffff;
+
     --input-color: #2e2e3a;
     --input-placeholder-color: #b4b4b4;
     --input-text-color: #b4b4b4;
 
     --checked-color: #678576;
 
-    --button-color-hover: #df3843;
     --dragging-color: #5a5a5a;
     --dragging-checked-color: #6c927e;
 
@@ -987,14 +975,16 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --header-color: #e0e4f1;
 
     --button-color: #da2c38;
+    --button-color-hover: #da2c38;
+    --button-text-color: #ffffff;
+
     --input-color: white;
     --input-placeholder-color: #202020;
     --input-text-color: #202020;
 
     --checked-color: #95cab0;
 
-    --button-color-hover: #df3843;
-    --dragging-color: #d3d3d3;
+    --dragging-color: #e6eaf8;
     --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
@@ -1019,15 +1009,17 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
     --header-gradient: none;
     --header-color: #3b3b4b;
 
-    --button-color: #df3843;
-    --input-color: #2e2e3a;
+    --button-color: #c03740;
+    --button-color-hover: #c03740;
+    --button-text-color: #ffffff;
+
+    --input-color: #30303b;
     --input-placeholder-color: #b4b4b4;
     --input-text-color: #b4b4b4;
 
     --checked-color: #678576;
 
-    --button-color-hover: #df3843;
-    --dragging-color: #5a5a5a;
+    --dragging-color: #444455;
     --dragging-checked-color: #6c927e;
 
     --text-color-first: #2e2e2e;
@@ -1045,31 +1037,33 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 
 .preset2-light
 {
-    --background-gradient: linear-gradient(30deg, #FFCDB2, #FFB4A2, #E5989B, #B5838D 80%, #6D6875);
-    --background-color: #E5989B;
+    --background-gradient: linear-gradient(100deg, #d4f1ff, #ffffff);
+    --background-color: #d4f1ff;
 
-    --primary-gradient: linear-gradient(70deg, #FFCDB2 -40%, #FFB4A2, #E5989B);
-    --primary-color: #FFB4A2;
+    --primary-gradient: linear-gradient(100deg, #d4f1ff -20%, #ffffff);
+    --primary-color: #d4f1ff;
 
-    --header-gradient: linear-gradient(25deg, #E5989B 30%, #B5838D, #6D6875 110%);
-    --header-color: #da8f92;
+    --header-gradient: linear-gradient(100deg, #d4f1ff, #ffffff);
+    --header-color: #d4f1ff;
 
-    --button-color: #da2c38;
+    --button-color: #686363;
+    --button-color-hover: #686363;
+    --button-text-color: #f1faff;
+
     --input-color: white;
     --input-placeholder-color: #202020;
     --input-text-color: #202020;
 
     --checked-color: #95cab0;
 
-    --button-color-hover: #df3843;
-    --dragging-color: #d3d3d3;
+    --dragging-color: #dff2fd;
     --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
-    --text-color-second: #544f5c;
-    --text-color-header: #ffffff;
+    --text-color-second: #494646;
+    --text-color-header: #494646;
 
-    --shadow-color: #5f5858;
+    --shadow-color: #acb6d3;
     --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
@@ -1078,173 +1072,59 @@ body.darkmode #preset2 #color5{background-color: #22272b;}
 
 .preset2-dark
 {
-    --background-gradient: linear-gradient(30deg, #A4161A, #660708, #22272b, #161A1D 80%, #0B090A);
-    --background-color: #660708;
+    --background-gradient: linear-gradient(100deg, #4a697a -20%, #062e3f);
+    --background-color: #062e3f;
 
-    --primary-gradient: linear-gradient(70deg, #A4161A -40%, #660708, #22272b);
-    --primary-color: #A4161A;
+    --primary-gradient: linear-gradient(100deg, #4a697a -40%, #062e3f 130%);
+    --primary-color: #062e3f;
 
-    --header-gradient: linear-gradient(25deg, #A4161A -30%, #660708, #22272b 110%);
-    --header-color: #A4161A;
+    --header-gradient: linear-gradient(100deg, #4a697a -20%, #062e3f);
+    --header-color: #062e3f;
 
-    --button-color: #c03333;
-    --input-color: rgb(206, 206, 206);
-    --input-placeholder-color: #383636;
-    --input-text-color: #2e2c2c;
+    --button-color: #0d303d;
+    --button-color-hover: #0d303d;
+    --button-text-color: #ffdfdb;
 
-    --checked-color: #8db87a;
+    --input-color: #113c4e;
+    --input-placeholder-color: #bbaba9;
+    --input-text-color: #ffdfdb;
 
-    --button-color-hover: #df3843;
-    --dragging-color: #660708;
-    --dragging-checked-color: rgb(169, 204, 153);
+    --checked-color: #7bada1;
 
-    --text-color-first: #2e2c2c;
-    --text-color-second: #cacaca;
-    --text-color-header: #dbdbdb;
+    --dragging-color: #385766;
+    --dragging-checked-color: #83b9ad;
 
-    --shadow-color: #070707;
-    --selected-preset-border: #8a8a8a;
-    --selected-preset-shadow: rgb(212, 212, 212);
+    --text-color-first: #ffdfdb;
+    --text-color-second: #ffdfdb;
+    --text-color-header: #ffdfdb;
+
+    --shadow-color: #062e3f;
+    --selected-preset-border: #beada9;
+    --selected-preset-shadow: #978986;
 
     --gradient-opacity: 1;
+}
+
+.preset2-dark .pannel-buttons
+{
+    background-color: transparent;
+}
+
+.preset2-dark .pannel-buttons::before
+{
+    background: transparent;
 }
 
 /*                                PRESET 3                                */
 
 .preset3-light
 {
-    --background-gradient: linear-gradient(30deg, #FFD6FF, #E7C6FF, #C8B6FF, #B8C0FF, #BBD0FF);
-    --background-color: #C8B6FF;
 
-    --primary-gradient: linear-gradient(45deg, #FFD6FF -10%, #E7C6FF, #C8B6FF 90%, #B8C0FF, #BBD0FF);
-    --primary-color: #C8B6FF;
-
-    --header-gradient: linear-gradient(30deg, #E7C6FF -20%, #beacf3, #abb3f0, #b0c6f3 85%);
-    --header-color: #beacf3;
-
-    --button-color: #e2455a;
-    --input-color: white;
-    --input-placeholder-color: #202020;
-    --input-text-color: white;
-
-    --checked-color: #89beaa;
-
-    --button-color-hover: #df3843;
-    --dragging-color: #eacffd;
-    --dragging-checked-color: #8bc4ae;
-
-    --text-color-first: #ffffff;
-    --text-color-second: #525758;
-    --text-color-header: #ffffff;
-
-    --shadow-color: #6a91aa;
-    --selected-preset-border: #414141;
-    --selected-preset-shadow: rgb(65, 65, 65);
-
-    --gradient-opacity: 1;
 }
 
 /*                                PRESET 4                                */
 
 .preset4-light
 {
-    --background-gradient: linear-gradient(30deg, #C77DFF -10%, #9D4EDD, #7B2CBF, #5A189A, #3C096C 120%);
-    --background-color: #9D4EDD;
 
-    --primary-gradient: linear-gradient(30deg, #C77DFF -70%, #9D4EDD, #7B2CBF);
-    --primary-color: #9D4EDD;
-
-    --header-gradient: linear-gradient(30deg, #9D4EDD -70%, #7B2CBF, #5A189A, #3C096C 125%);
-    --header-color: #7B2CBF;
-
-    --button-color: #f02540;
-    --input-color: white;
-    --input-placeholder-color: #202020;
-    --input-text-color: white;
-
-    --checked-color: #7bada1;
-
-    --button-color-hover: #df3843;
-    --dragging-color: #9D4EDD;
-    --dragging-checked-color: #83b9ad;
-
-    --text-color-first: #ffffff;
-    --text-color-second: #f2e2fd;
-    --text-color-header: #ffffff;
-
-    --shadow-color: #543e61;
-    --selected-preset-border: #414141;
-    --selected-preset-shadow: rgb(30, 8, 36);
-
-    --gradient-opacity: 1;
-}
-
-/*                                PRESET 5                                */
-
-.preset5-light
-{
-    --background-gradient: linear-gradient(30deg, #F2E9E4 -10%, #C9ADA7, #9A8C98, #4A4E69, #22223B 120%);
-    --background-color: #9A8C98;
-
-    --primary-gradient: linear-gradient(30deg, #F2E9E4 -20%, #C9ADA7 60%, #8f828d 120%);
-    --primary-color: #C9ADA7;
-
-    --header-gradient: linear-gradient(20deg, #9A8C98, #4A4E69, #22223B 120%);
-    --header-color: #9A8C98;
-
-    --button-color: #da2c38;
-    --input-color: white;
-    --input-placeholder-color: #202020;
-    --input-text-color: white;
-
-    --checked-color: #8bb492;
-
-    --button-color-hover: #df3843;
-    --dragging-color: #d4bfba;
-    --dragging-checked-color: #97c09e;
-
-    --text-color-first: #ffffff;
-    --text-color-second: #575757;
-    --text-color-header: #ffffff;
-
-    --shadow-color: #464646;
-    --selected-preset-border: #414141;
-    --selected-preset-shadow: rgb(46, 46, 46);
-
-    --gradient-opacity: 1;
-}
-
-/*                                PRESET 6                                */
-
-.preset6-light
-{
-    --background-gradient: linear-gradient(30deg, #CAD2C5, #84A98C, #52796F, #354F52, #2F3E46);
-    --background-color: #52796F;
-
-    --primary-gradient: linear-gradient(30deg, #CAD2C5, #84A98C, #52796F 120%);
-    --primary-color: #84A98C;
-
-    --header-gradient: linear-gradient(30deg, #84A98C, #52796F, #354F52);
-    --header-color: #52796F;
-
-    --button-color: #da2c38;
-    --input-color: white;
-    --input-placeholder-color: #202020;
-    --input-text-color: white;
-
-    --checked-color: #69b973;
-
-    --button-color-hover: #df3843;
-    --dragging-color: #a0bea6;
-    --dragging-checked-color: #76c280;
-
-    --text-color-first: #ffffff;
-    --text-color-second: #2a362b;
-    --text-color-header: #ffffff;
-    
-    --shadow-color: #384d46;
-    --selected-preset-border: #414141;
-    --selected-preset-shadow: rgb(65, 65, 65);
-
-    --gradient-opacity: 1;
 }
