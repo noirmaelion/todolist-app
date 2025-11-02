@@ -317,33 +317,33 @@ function applyTheme(preset, mode)
     const currentClass = [...body.classList].find((c) => c.includes("-light") || c.includes("-dark"));
     const targetClass = `${preset}-${mode}`;
 
-    const currentHasGradient = hasGradient(currentClass);
-    const targetHasGradient = hasGradient(targetClass);
+    const currentHasOverlay = hasOverlay(currentClass);
+    const targetHasOverlay = hasOverlay(targetClass);
 
     // -- transition cases --
-    if(currentHasGradient && targetHasGradient)
+    if(currentHasOverlay && targetHasOverlay)
     {
-        body.style.setProperty("--gradient-opacity", "0");
+        body.style.setProperty("--overlay-opacity", "0");
         setTimeout(() => {
             applyThemeHelper(preset, mode);
             setTimeout(() => {
-                body.style.setProperty("--gradient-opacity", "1");
+                body.style.setProperty("--overlay-opacity", "1");
             }, 100);
         }, 200);
     }
-    else if(currentHasGradient && !targetHasGradient)
+    else if(currentHasOverlay && !targetHasOverlay)
     {
-        body.style.setProperty("--gradient-opacity", "0");
+        body.style.setProperty("--overlay-opacity", "0");
         setTimeout(() => {
             applyThemeHelper(preset, mode);
         }, 200);
     }
-    else if(!currentHasGradient && targetHasGradient)
+    else if(!currentHasOverlay && targetHasOverlay)
     {
         applyThemeHelper(preset, mode);
-        body.style.setProperty("--gradient-opacity", "0");
+        body.style.setProperty("--overlay-opacity", "0");
         setTimeout(() => {
-            body.style.setProperty("--gradient-opacity", "1")
+            body.style.setProperty("--overlay-opacity", "1")
         }, 200);
     }
     else
@@ -355,7 +355,7 @@ function applyTheme(preset, mode)
     localStorage.setItem("mode", mode);
 }
 
-function hasGradient(className)
+function hasOverlay(className)
 {
     const testElement = document.createElement("div");
     testElement.style.position = "absolute";
@@ -377,10 +377,20 @@ function hasGradient(className)
         styles.getPropertyValue("--header-gradient")
     ]
 
+    const images =
+    [
+        styles.getPropertyValue("--background-image")
+    ]
+
     document.body.classList.add(...savedPresetClasses);
     document.body.removeChild(testElement);
 
-    return gradients.some((g) => g && g.trim() !== "none" & g.trim() !== "");
+    console.log("===========");
+    console.log(gradients.some((g) => g && g.trim() !== "none" && g.trim() !== ""));
+    console.log("-----------");
+    console.log(images.some((i) => i && i.trim() !== "none" && i.trim() !== ""));
+    console.log("===========");
+    return gradients.some((g) => g && g.trim() !== "none" && g.trim() !== "") || images.some((i) => i && i.trim() !== "none" && i.trim() !== "");
 }
 
 function applyThemeHelper(preset, mode)

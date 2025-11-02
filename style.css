@@ -25,10 +25,15 @@ body::before {
     inset: 0;
     /* extend gradient to prevent white gap when mobile browser UI hides */
     height: 120vh;
+    width: 100%;
     /* height: calc(var(--vh, 1vh) * 100); */
-    background: var(--background-gradient, none);
+    background: var(--background-gradient, none), var(--background-image, none);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     z-index: -1;
-    opacity: var(--gradient-opacity);
+    opacity: var(--overlay-opacity);
     pointer-events: none;
 
     transition: opacity 0.3s ease;
@@ -70,7 +75,7 @@ body::before {
     inset: 0;
     border-radius: inherit;
     z-index: -1;
-    opacity: var(--gradient-opacity);
+    opacity: var(--overlay-opacity);
 
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -117,7 +122,7 @@ body::before {
     background: var(--primary-gradient);
     border-radius: inherit;
 
-    opacity: var(--gradient-opacity);
+    opacity: var(--overlay-opacity);
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
@@ -360,7 +365,7 @@ body::before {
     border-radius: inherit;
     inset: 0;
     background: var(--primary-gradient);
-    opacity: var(--gradient-opacity);
+    opacity: var(--overlay-opacity);
     pointer-events: none;
 
     transition: opacity 0.3s ease;
@@ -473,7 +478,7 @@ svg.customization-icon
     position: absolute;
     inset: 0;
     background: var(--primary-gradient);
-    opacity: var(--gradient-opacity);
+    opacity: var(--overlay-opacity);
     border-radius: inherit;
     pointer-events: none;
 
@@ -891,6 +896,8 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 :root
 {
+    --background-image: none;
+
     --background-gradient: none;
     --background-color: #fafaff;
 
@@ -921,11 +928,13 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
-    --gradient-opacity: 0;
+    --overlay-opacity: 0;
 }
 
 .darkmode
 {
+    --background-image: none;
+
     --background-gradient: none;
     --background-color: #30303b;
 
@@ -956,7 +965,7 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #8a8a8a;
     --selected-preset-shadow: #8a8a8a;
 
-    --gradient-opacity: 0;
+    --overlay-opacity: 0;
 }
 
 /* ======================= Themes ======================= */
@@ -965,6 +974,8 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 .preset1-light
 {
+    --background-image: none;
+
     --background-gradient: none;
     --background-color: #fafaff;
 
@@ -995,11 +1006,13 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
-    --gradient-opacity: 0;
+    --overlay-opacity: 0;
 }
 
 .preset1-dark
 {
+    --background-image: none;
+
     --background-gradient: none;
     --background-color: #30303b;
 
@@ -1030,7 +1043,7 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #8a8a8a;
     --selected-preset-shadow: #8a8a8a;
 
-    --gradient-opacity: 0;
+    --overlay-opacity: 0;
 }
 
 /*                                PRESET 2                                */
@@ -1067,7 +1080,7 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
-    --gradient-opacity: 0;
+    --overlay-opacity: 1;
 }
 
 .preset2-dark
@@ -1102,7 +1115,7 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --selected-preset-border: #beada9;
     --selected-preset-shadow: #978986;
 
-    --gradient-opacity: 1;
+    --overlay-opacity: 1;
 }
 
 .preset2-dark .pannel-buttons
@@ -1119,7 +1132,98 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 .preset3-light
 {
+    --background-image: url("images/snowy-mountain-day.png");
 
+    --background-gradient: none;
+    --background-color: #78b8dd;
+
+    --primary-gradient: none;
+    --primary-color: #78b8dd;
+
+    --header-gradient: none;
+    --header-color: #78b8dd;
+
+    --button-color: #686363;
+    --button-color-hover: #686363;
+    --button-text-color: #f1faff;
+
+    --input-color: white;
+    --input-placeholder-color: #202020;
+    --input-text-color: #202020;
+
+    --checked-color: #95cab0;
+
+    --dragging-color: #dff2fd;
+    --dragging-checked-color: #9bd4b9;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #414141;
+    --text-color-header: #414141;
+
+    --shadow-color: #414141;
+    --selected-preset-border: #414141;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --overlay-opacity: 1;
+}
+
+.preset3-light .pannel-buttons, .preset3-light #header, .preset3-light #ToDoList, .preset3-light #customization-menu
+{
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.preset3-light .pannel-buttons::before
+{
+    background: transparent;
+}
+
+.preset3-dark
+{
+    --background-image: url("images/snowy-mountain-night.jpg");
+
+    --background-gradient: none;
+    --background-color: #0c2b3d;
+
+    --primary-gradient: none;
+    --primary-color: #0c2b3d;
+
+    --header-gradient: none;
+    --header-color: #0c2b3d;
+
+    --button-color: #686363;
+    --button-color-hover: #686363;
+    --button-text-color: #f1faff;
+
+    --input-color: #14274e;
+    --input-placeholder-color: #9c9c9c;
+    --input-text-color: #ffffff;
+
+    --checked-color: #3d8160;
+
+    --dragging-color: #0c2b3d;
+    --dragging-checked-color: #3d8160;
+
+    --text-color-first: #ffffff;
+    --text-color-second: #ffffff;
+    --text-color-header: #ffffff;
+
+    --shadow-color: #000000;
+    --selected-preset-border: #414141;
+    --selected-preset-shadow: rgb(65, 65, 65);
+
+    --overlay-opacity: 1;
+}
+
+.preset3-dark .pannel-buttons, .preset3-dark #header, .preset3-dark #ToDoList, .preset3-dark #customization-menu
+{
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.preset3-dark .pannel-buttons::before
+{
+    background: transparent;
 }
 
 /*                                PRESET 4                                */
