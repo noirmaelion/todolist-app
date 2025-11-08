@@ -328,7 +328,7 @@ function applyTheme(preset, mode)
             applyThemeHelper(preset, mode);
             setTimeout(() => {
                 body.style.setProperty("--overlay-opacity", "1");
-            }, 100);
+            }, 200);
         }, 200);
     }
     else if(currentHasOverlay && !targetHasOverlay)
@@ -377,20 +377,10 @@ function hasOverlay(className)
         styles.getPropertyValue("--header-gradient")
     ]
 
-    const images =
-    [
-        styles.getPropertyValue("--background-image")
-    ]
-
     document.body.classList.add(...savedPresetClasses);
     document.body.removeChild(testElement);
 
-    console.log("===========");
-    console.log(gradients.some((g) => g && g.trim() !== "none" && g.trim() !== ""));
-    console.log("-----------");
-    console.log(images.some((i) => i && i.trim() !== "none" && i.trim() !== ""));
-    console.log("===========");
-    return gradients.some((g) => g && g.trim() !== "none" && g.trim() !== "") || images.some((i) => i && i.trim() !== "none" && i.trim() !== "");
+    return gradients.some((g) => g && g.trim() !== "none" && g.trim() !== "");
 }
 
 function applyThemeHelper(preset, mode)

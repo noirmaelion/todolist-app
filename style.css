@@ -14,7 +14,7 @@ body
     background-color: var(--background-color);
     font-family: sans-serif;
 
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
     overflow-x: clip;
 }
 
@@ -64,7 +64,7 @@ body::before {
     box-shadow: 0px 0px 25px var(--shadow-color);
     user-select: none;
 
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 #header::before
@@ -111,7 +111,7 @@ body::before {
     box-shadow: 0px 0px 15px var(--shadow-color);
     margin-bottom: 70px;
 
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 #ToDoList::before
@@ -349,7 +349,7 @@ body::before {
     box-shadow: 0px 0px 15px var(--shadow-color);
     cursor: pointer;
 
-    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 
     display: flex;
     align-items: center;
@@ -463,7 +463,7 @@ svg.customization-icon
     left: -280px;
     top: -20px;
 
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease, backdrop-filter 0.3s ease;
 
     /* default state, or you can just add hidden class in html and remove additional js logic when we click outside of the window */
     opacity: 0;
@@ -854,15 +854,13 @@ svg.customization-icon
 #preset1 #color4{background-color: #c0c3cc;}
 #preset1 #color5{background-color: #b0b2bb;}
 
-/* darkmode adaptation */
-
 body.darkmode #preset1 #color1{background-color: #3a3a49;}
 body.darkmode #preset1 #color2{background-color: #373746;}
 body.darkmode #preset1 #color3{background-color: #353542;}
 body.darkmode #preset1 #color4{background-color: #32323f;}
 body.darkmode #preset1 #color5{background-color: #30303b;}
 
-/*                                PRESET 2                                */
+/*                                PRESET 2 Sky Tones                                */
 
 #preset2 #color1{background-color: #d4f1ff;}
 #preset2 #color2{background-color: #def4ff;}
@@ -870,27 +868,41 @@ body.darkmode #preset1 #color5{background-color: #30303b;}
 #preset2 #color4{background-color: #f1faff;}
 #preset2 #color5{background-color: #fafdff;}
 
-body.darkmode #preset2 #color1{background-color: #436273;}
-body.darkmode #preset2 #color2{background-color: #355466;}
-body.darkmode #preset2 #color3{background-color: #264758;}
-body.darkmode #preset2 #color4{background-color: #173a4c;}
+body.darkmode #preset2 #color1{background-color: #4a697a;}
+body.darkmode #preset2 #color2{background-color: #3a5a6b;}
+body.darkmode #preset2 #color3{background-color: #2a4b5c;}
+body.darkmode #preset2 #color4{background-color: #193c4d;}
 body.darkmode #preset2 #color5{background-color: #062e3f;}
 
-/*                                PRESET 3                                */
+/*                                PRESET 3 Soft Pastels                                */
 
-#preset3 #color1{background-color: #FFD6FF;}
-#preset3 #color2{background-color: #E7C6FF;}
-#preset3 #color3{background-color: #C8B6FF;}
-#preset3 #color4{background-color: #B8C0FF;}
-#preset3 #color5{background-color: #BBD0FF;}
+#preset3 #color1{background-color: #ffd6ff;}
+#preset3 #color2{background-color: #f0d4ff;}
+#preset3 #color3{background-color: #dfd2ff;}
+#preset3 #color4{background-color: #cdd1ff;}
+#preset3 #color5{background-color: #bbd0ff;}
 
-/*                                PRESET 4                                */
+body.darkmode #preset3 #color1{background-color: #401d40;}
+body.darkmode #preset3 #color2{background-color: #361d41;}
+body.darkmode #preset3 #color3{background-color: #2a1d42;}
+body.darkmode #preset3 #color4{background-color: #1d1d40;}
+body.darkmode #preset3 #color5{background-color: #0d1c3e;}
 
-#preset4 #color1{background-color: #C77DFF;}
-#preset4 #color2{background-color: #9D4EDD;}
-#preset4 #color3{background-color: #7B2CBF;}
-#preset4 #color4{background-color: #5A189A;}
-#preset4 #color5{background-color: #3C096C;}
+/*                                 just a fallback color for empty presets                                */
+
+/* added them to test custom scroll animation */
+
+.customization-presets #color1{background-color: #fafaff;}
+.customization-presets #color2{background-color: #e0e4f1;}
+.customization-presets #color3{background-color: #d0d3df;}
+.customization-presets #color4{background-color: #c0c3cc;}
+.customization-presets #color5{background-color: #b0b2bb;}
+
+body.darkmode .customization-presets #color1{background-color: #3a3a49;}
+body.darkmode .customization-presets #color2{background-color: #373746;}
+body.darkmode .customization-presets #color3{background-color: #353542;}
+body.darkmode .customization-presets #color4{background-color: #32323f;}
+body.darkmode .customization-presets #color5{background-color: #30303b;}
 
 /* ======================= Fallback variables ======================= */
 
@@ -974,8 +986,6 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 .preset1-light
 {
-    --background-image: none;
-
     --background-gradient: none;
     --background-color: #fafaff;
 
@@ -1011,8 +1021,6 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 
 .preset1-dark
 {
-    --background-image: none;
-
     --background-gradient: none;
     --background-color: #30303b;
 
@@ -1046,7 +1054,7 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --overlay-opacity: 0;
 }
 
-/*                                PRESET 2                                */
+/*                                PRESET 2 Sky Tones                                */
 
 .preset2-light
 {
@@ -1086,13 +1094,13 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 .preset2-dark
 {
     --background-gradient: linear-gradient(100deg, #4a697a -20%, #062e3f);
-    --background-color: #062e3f;
+    --background-color: #193c4d;
 
     --primary-gradient: linear-gradient(100deg, #4a697a -40%, #062e3f 130%);
-    --primary-color: #062e3f;
+    --primary-color: #193c4d;
 
     --header-gradient: linear-gradient(100deg, #4a697a -20%, #062e3f);
-    --header-color: #062e3f;
+    --header-color: #193c4d;
 
     --button-color: #0d303d;
     --button-color-hover: #0d303d;
@@ -1127,21 +1135,18 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
 {
     background: transparent;
 }
-
-/*                                PRESET 3                                */
+/*                                PRESET 3 Soft Pastels                                */
 
 .preset3-light
 {
-    --background-image: url("images/snowy-mountain-day.png");
+    --background-gradient: linear-gradient(100deg, #FFD6FF, #BBD0FF);
+    --background-color: #BBD0FF;
 
-    --background-gradient: none;
-    --background-color: #78b8dd;
+    --primary-gradient: linear-gradient(100deg, #FFD6FF -20%, #BBD0FF);
+    --primary-color: #BBD0FF;
 
-    --primary-gradient: none;
-    --primary-color: #78b8dd;
-
-    --header-gradient: none;
-    --header-color: #78b8dd;
+    --header-gradient: linear-gradient(100deg, #FFD6FF, #BBD0FF);
+    --header-color: #BBD0FF;
 
     --button-color: #686363;
     --button-color-hover: #686363;
@@ -1157,78 +1162,81 @@ body.darkmode #preset2 #color5{background-color: #062e3f;}
     --dragging-checked-color: #9bd4b9;
 
     --text-color-first: #ffffff;
-    --text-color-second: #414141;
-    --text-color-header: #414141;
+    --text-color-second: #433b52;
+    --text-color-header: #433b52;
 
-    --shadow-color: #414141;
+    --shadow-color: #8997b6;
     --selected-preset-border: #414141;
     --selected-preset-shadow: rgb(65, 65, 65);
 
     --overlay-opacity: 1;
 }
 
-.preset3-light .pannel-buttons, .preset3-light #header, .preset3-light #ToDoList, .preset3-light #customization-menu
+.preset3-light .pannel-buttons, 
+.preset3-light #header, 
+.preset3-light #ToDoList, 
+.preset3-light #customization-menu
 {
     background-color: transparent;
     backdrop-filter: blur(10px);
 }
 
-.preset3-light .pannel-buttons::before
+.preset3-light .pannel-buttons::before, 
+.preset3-light #header::before, 
+.preset3-light #ToDoList::before, 
+.preset3-light #customization-menu::before
 {
     background: transparent;
 }
 
 .preset3-dark
 {
-    --background-image: url("images/snowy-mountain-night.jpg");
+    --background-gradient: linear-gradient(100deg, #401d40 -10%, #0d1c3e);
+    --background-color: #0d1c3e;
 
-    --background-gradient: none;
-    --background-color: #0c2b3d;
+    --primary-gradient: linear-gradient(100deg, #401d40 -10%, #0d1c3e 130%);
+    --primary-color: #0d1c3e;
 
-    --primary-gradient: none;
-    --primary-color: #0c2b3d;
+    --header-gradient: linear-gradient(100deg, #401d40 -10%, #0d1c3e);
+    --header-color: #0d1c3e;
 
-    --header-gradient: none;
-    --header-color: #0c2b3d;
+    --button-color: #221b2e;
+    --button-color-hover: #221b2e;
+    --button-text-color: #ddbcdd;
 
-    --button-color: #686363;
-    --button-color-hover: #686363;
-    --button-text-color: #f1faff;
+    --input-color: #292236;
+    --input-placeholder-color: #b19cb1;
+    --input-text-color: #c2acc2;
 
-    --input-color: #14274e;
-    --input-placeholder-color: #9c9c9c;
-    --input-text-color: #ffffff;
+    --checked-color: #3e755c;
 
-    --checked-color: #3d8160;
+    --dragging-color: #361d41;
+    --dragging-checked-color: #487c65;
 
-    --dragging-color: #0c2b3d;
-    --dragging-checked-color: #3d8160;
+    --text-color-first: #ddbcdd;
+    --text-color-second: #c2acc2;
+    --text-color-header: #c2acc2;
 
-    --text-color-first: #ffffff;
-    --text-color-second: #ffffff;
-    --text-color-header: #ffffff;
-
-    --shadow-color: #000000;
-    --selected-preset-border: #414141;
-    --selected-preset-shadow: rgb(65, 65, 65);
+    --shadow-color: #1a1819;
+    --selected-preset-border: #c2acc2;
+    --selected-preset-shadow: #c2acc2;
 
     --overlay-opacity: 1;
 }
 
-.preset3-dark .pannel-buttons, .preset3-dark #header, .preset3-dark #ToDoList, .preset3-dark #customization-menu
+.preset3-dark .pannel-buttons, 
+.preset3-dark #header, 
+.preset3-dark #ToDoList, 
+.preset3-dark #customization-menu
 {
     background-color: transparent;
     backdrop-filter: blur(10px);
 }
 
-.preset3-dark .pannel-buttons::before
+.preset3-dark .pannel-buttons::before, 
+.preset3-dark #header::before, 
+.preset3-dark #ToDoList::before, 
+.preset3-dark #customization-menu::before
 {
     background: transparent;
-}
-
-/*                                PRESET 4                                */
-
-.preset4-light
-{
-
 }
